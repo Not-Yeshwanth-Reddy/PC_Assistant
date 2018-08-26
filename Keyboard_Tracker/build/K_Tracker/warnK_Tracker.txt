@@ -1,0 +1,22 @@
+missing module named org - imported by pickle, /home/yeshwanth_reddy/Desktop/NnY_Packages/Keyboard_Tracker/K_Tracker.py
+excluded module named _frozen_importlib - imported by importlib, importlib.abc, /home/yeshwanth_reddy/Desktop/NnY_Packages/Keyboard_Tracker/K_Tracker.py
+missing module named _frozen_importlib_external - imported by importlib._bootstrap, importlib, importlib.abc, /home/yeshwanth_reddy/Desktop/NnY_Packages/Keyboard_Tracker/K_Tracker.py
+missing module named _winreg - imported by platform, /home/yeshwanth_reddy/Desktop/NnY_Packages/Keyboard_Tracker/K_Tracker.py
+missing module named _scproxy - imported by urllib.request
+missing module named java - imported by platform, /home/yeshwanth_reddy/Desktop/NnY_Packages/Keyboard_Tracker/K_Tracker.py
+missing module named 'java.lang' - imported by platform, /home/yeshwanth_reddy/Desktop/NnY_Packages/Keyboard_Tracker/K_Tracker.py, xml.sax._exceptions
+missing module named vms_lib - imported by platform, /home/yeshwanth_reddy/Desktop/NnY_Packages/Keyboard_Tracker/K_Tracker.py
+missing module named winreg - imported by platform, mimetypes, /home/yeshwanth_reddy/Desktop/NnY_Packages/Keyboard_Tracker/K_Tracker.py, urllib.request
+missing module named nt - imported by os, ntpath, shutil, /home/yeshwanth_reddy/Desktop/NnY_Packages/Keyboard_Tracker/K_Tracker.py
+missing module named msvcrt - imported by subprocess, /home/yeshwanth_reddy/Desktop/NnY_Packages/Keyboard_Tracker/K_Tracker.py, getpass
+missing module named _winapi - imported by subprocess, /home/yeshwanth_reddy/Desktop/NnY_Packages/Keyboard_Tracker/K_Tracker.py
+missing module named _dummy_threading - imported by dummy_threading, /home/yeshwanth_reddy/Desktop/NnY_Packages/Keyboard_Tracker/K_Tracker.py
+missing module named 'org.python' - imported by copy, /home/yeshwanth_reddy/Desktop/NnY_Packages/Keyboard_Tracker/K_Tracker.py, xml.sax
+runtime module named six.moves - imported by pynput._util, Xlib.threaded
+missing module named StringIO - imported by six
+missing module named FCNTL - imported by Xlib.support.unix_connect
+missing module named CoreFoundation - imported by pynput._util.darwin
+missing module named objc - imported by pynput._util.darwin
+missing module named 'ctypes.macholib' - imported by ctypes.util
+missing module named AppKit - imported by pynput.mouse._darwin
+missing module named Quartz - imported by pynput.keyboard._darwin, pynput._util.darwin, pynput.mouse._darwin

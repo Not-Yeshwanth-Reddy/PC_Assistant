@@ -1,0 +1,22 @@
+Dynamic_Typing	- Part of PC_Assistant, used for voice typing
+K_Tracker		- Records Keyboard events and makes Key_Logs.txt in Logs folder
+M_Tracker		- Records Mouse events and makes Mouse_Logs.txt in Logs folder
+MK_Controller	- Reads the name of .txt file in Logs/temp.txt and replays the Logs in that .txt file
+Screen_Recorder	- For now, it works only in linux. (Records screen and saves it in Logs folder)
+Merger			- Merges all the Log files - Key_Logs.txt, Mouse_Logs.txt, Voice_Logs.txt and makes sorted Log list in All_Logs.txt
+Understanding	- Reads All_Logs.txt and 	
+					1. Takes screenshots at click locations and saves in Icons
+					2. Saves the Frames into Frames folder (Frames from which the Icon was removed )
+					2. Removes excess Mouse_Moved Logs
+PC_Assistant 	- The Boss of all Codes. (The Main Code which drives all the other Codes)
+Stop_PC_Assistant	- This stops/kills all the background tasks of PC_Assistant. (Just in case if something goes Wrong.)	#Only for Linux
+Subtract Image	- This is the code written by "Gaurav Sharma Sir" used for subtracting the Difference of two Images.
+
+
+Folders ->
+Logs	- Saves all the Log files in it
+Icons	- Understanding.py Saves all the Icons in it.
+Frames	- Understanding.py Saves all the Frames in it.
+Keyboard_Tracker	- The Linux Build of K_Tracker.py(The PC_Assistant.py uses this rather than K_Trackeer.py)
+Mouse_Tracker	- The Linux Build of M_Tracker.py(The PC_Assistant.py uses this rather than M_Trackeer.py)
+Train_Data	- The Understanding.py Saves the Final Logs in Train_Data. The PC_Assistant searches for trained data in this folder on users command.
