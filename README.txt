@@ -87,10 +87,6 @@
         example: go to sleep Assistant
       This will set your assistant in Sleep mode. It will be active in the Background but would not disturb your work in the foreground. The keywork "wake up" will set it to active mode again.
     
-    5. Sing a song - 
-      This feature was just added for fun.
-      Believe me, this is the worst singer you have ever heard.
-
-    6. Closing the PC assistant -
+    5. Closing the PC assistant -
       Say - (exit) or (go to sleep)
       This mightbe your favourite command after your first use. ;}
