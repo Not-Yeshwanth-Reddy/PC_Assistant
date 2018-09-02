@@ -1,0 +1,10 @@
+Voice_C _|_ Main Task _|_ Whats the Main Task _|_ 15 _|_ 47 _|_ 28 _|_ 975396
+Voice_U _|_ Main Task _|_ open terminal _|_ 15 _|_ 47 _|_ 50 _|_ 327163
+Screen_Recorder _|_ Main Task _|_ Blank Field _|_ 15 _|_ 47 _|_ 51 _|_ 433031
+Voice_C _|_ 1st step _|_ Whats the 1st step _|_ 15 _|_ 47 _|_ 51 _|_ 440044
+Voice_U _|_ 1st step _|_ open terminal from taskbar _|_ 15 _|_ 48 _|_ 02 _|_ 106940
+Mouse _|_ Moved _|_ (100, 562) _|_ 15 _|_ 48 _|_ 08 _|_ 029146
+Mouse _|_ Moved _|_ (21, 96) _|_ 15 _|_ 48 _|_ 09 _|_ 438567
+Mouse _|_ Pressed.Button.left _|_ (21, 96) _|_ 15 _|_ 48 _|_ 09 _|_ 924302 _|_ Icons/Icon16894.png _|_ Icons/Icon16894_shape.png _|_ Perfect
+Mouse _|_ Released.Button.left _|_ (21, 96) _|_ 15 _|_ 48 _|_ 10 _|_ 051984
+Mouse _|_ Moved _|_ (30, 99) _|_ 15 _|_ 48 _|_ 11 _|_ 206776

@@ -1,0 +1,9 @@
+Voice_C _|_ Main Task _|_ Whats the Main Task _|_ 14 _|_ 09 _|_ 21 _|_ 747407
+Voice_U _|_ Main Task _|_ close application _|_ 14 _|_ 09 _|_ 43 _|_ 861397
+Screen_Recorder _|_ Main Task _|_ Blank Field _|_ 14 _|_ 09 _|_ 44 _|_ 910962
+Voice_C _|_ 1st step _|_ Whats the 1st step _|_ 14 _|_ 09 _|_ 44 _|_ 914777
+Voice_U _|_ 1st step _|_ press alt + f4 keys _|_ 14 _|_ 09 _|_ 56 _|_ 153869
+Keyboard _|_ Pressed _|_ Key.alt _|_ 14 _|_ 10 _|_ 06 _|_ 988333
+Keyboard _|_ Pressed _|_ Key.f4 _|_ 14 _|_ 10 _|_ 07 _|_ 603290
+Keyboard _|_ Released _|_ Key.f4 _|_ 14 _|_ 10 _|_ 07 _|_ 842926
+Keyboard _|_ Released _|_ Key.alt _|_ 14 _|_ 10 _|_ 07 _|_ 887584

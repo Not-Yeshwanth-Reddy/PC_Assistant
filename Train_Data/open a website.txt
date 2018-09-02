@@ -1,0 +1,20 @@
+Voice_C _|_ Main Task _|_ Whats the Main Task _|_ 18 _|_ 30 _|_ 03 _|_ 701194
+Voice_U _|_ Main Task _|_ open a website _|_ 18 _|_ 30 _|_ 27 _|_ 210901
+Screen_Recorder _|_ Main Task _|_ Blank Field _|_ 18 _|_ 30 _|_ 28 _|_ 322276
+Voice_C _|_ 1st step _|_ Whats the 1st step _|_ 18 _|_ 30 _|_ 28 _|_ 328206
+Voice_U _|_ 1st step _|_ open google chrome and open website _|_ 18 _|_ 30 _|_ 39 _|_ 110396
+Mouse _|_ Moved _|_ (685, 228) _|_ 18 _|_ 30 _|_ 44 _|_ 587959
+Mouse _|_ Moved _|_ (26, 136) _|_ 18 _|_ 30 _|_ 47 _|_ 126910
+Mouse _|_ Pressed.Button.left _|_ (26, 136) _|_ 18 _|_ 30 _|_ 47 _|_ 457682 _|_ Icons/Icon17501.png _|_ Icons/Icon17501_shape.png _|_ Perfect
+Mouse _|_ Released.Button.left _|_ (26, 136) _|_ 18 _|_ 30 _|_ 47 _|_ 550127
+Keyboard _|_ Pressed _|_ Key.ctrl _|_ 18 _|_ 30 _|_ 49 _|_ 348501
+Keyboard _|_ Pressed _|_ 't' _|_ 18 _|_ 30 _|_ 49 _|_ 513161
+Keyboard _|_ Released _|_ 't' _|_ 18 _|_ 30 _|_ 49 _|_ 568923
+Keyboard _|_ Released _|_ Key.ctrl _|_ 18 _|_ 30 _|_ 49 _|_ 662866
+Voice_C _|_ 2nd step _|_ Whats the 2nd step _|_ 18 _|_ 30 _|_ 53 _|_ 778439
+Voice_U _|_ 2nd step _|_ dynamic typing _|_ 18 _|_ 31 _|_ 04 _|_ 893528
+Dynamic_Typing _|_ 2nd step _|_ Some bla bla text _|_ 18 _|_ 31 _|_ 06 _|_ 063746
+Voice_C _|_ 3rd step _|_ Whats the 3rd step _|_ 18 _|_ 30 _|_ 53 _|_ 778439
+Voice_U _|_ 3rd step _|_ press enter _|_ 18 _|_ 31 _|_ 04 _|_ 893528
+Keyboard _|_ Pressed _|_ Key.enter _|_ 18 _|_ 31 _|_ 05 _|_ 893528
+Keyboard _|_ Released _|_ Key.enter _|_ 18 _|_ 31 _|_ 06 _|_ 193528

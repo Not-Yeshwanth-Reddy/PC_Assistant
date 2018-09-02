@@ -1,0 +1,5 @@
+Voice_C _|_ Main Task _|_ Whats the Main Task _|_ 23 _|_ 40 _|_ 16 _|_ 732501
+Voice_U _|_ Main Task _|_ open project folder _|_ 23 _|_ 40 _|_ 42 _|_ 165351
+Screen_Recorder _|_ Main Task _|_ Blank Field _|_ 23 _|_ 40 _|_ 43 _|_ 271313
+Voice_C _|_ 1st step _|_ Whats the 1st step _|_ 23 _|_ 40 _|_ 43 _|_ 279285
+Voice_U _|_ 1st step _|_ double click on project folder _|_ 23 _|_ 40 _|_ 54 _|_ 222764

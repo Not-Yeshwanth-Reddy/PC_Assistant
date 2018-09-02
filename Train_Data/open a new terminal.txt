@@ -1,0 +1,11 @@
+Voice_C _|_ Main Task _|_ Whats the Main Task _|_ 14 _|_ 06 _|_ 23 _|_ 131112
+Voice_U _|_ Main Task _|_ open a new terminal _|_ 14 _|_ 07 _|_ 05 _|_ 216570
+Screen_Recorder _|_ Main Task _|_ Blank Field _|_ 14 _|_ 07 _|_ 06 _|_ 266645
+Voice_C _|_ 1st step _|_ Whats the 1st step _|_ 14 _|_ 07 _|_ 06 _|_ 270963
+Voice_U _|_ 1st step _|_ press control to solve bst keys _|_ 14 _|_ 07 _|_ 18 _|_ 118139
+Keyboard _|_ Pressed _|_ Key.ctrl _|_ 14 _|_ 07 _|_ 23 _|_ 319926
+Keyboard _|_ Pressed _|_ Key.alt _|_ 14 _|_ 07 _|_ 23 _|_ 734342
+Keyboard _|_ Pressed _|_ 't' _|_ 14 _|_ 07 _|_ 24 _|_ 191124
+Keyboard _|_ Released _|_ 't' _|_ 14 _|_ 07 _|_ 24 _|_ 286787
+Keyboard _|_ Released _|_ Key.alt _|_ 14 _|_ 07 _|_ 24 _|_ 686618
+Keyboard _|_ Released _|_ Key.ctrl _|_ 14 _|_ 07 _|_ 24 _|_ 923375

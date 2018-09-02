@@ -1,0 +1,41 @@
+Voice_C _|_ Main Task _|_ Whats the Main Task _|_ 13 _|_ 44 _|_ 31 _|_ 655779
+Voice_U _|_ Main Task _|_ unlock my computer _|_ 13 _|_ 44 _|_ 51 _|_ 854679
+Screen_Recorder _|_ Main Task _|_ Blank Field _|_ 13 _|_ 44 _|_ 52 _|_ 900137
+Voice_C _|_ 1st step _|_ Whats the 1st step _|_ 13 _|_ 44 _|_ 52 _|_ 904750
+Voice_U _|_ 1st step _|_ ludhiana train _|_ 13 _|_ 45 _|_ 04 _|_ 464754
+Mouse _|_ Moved _|_ (617, 479) _|_ 13 _|_ 45 _|_ 11 _|_ 463566
+Mouse _|_ Moved _|_ (671, 689) _|_ 13 _|_ 45 _|_ 12 _|_ 043126
+Mouse _|_ Pressed.Button.left _|_ (671, 689) _|_ 13 _|_ 45 _|_ 12 _|_ 106895
+Mouse _|_ Moved _|_ (672, 688) _|_ 13 _|_ 45 _|_ 12 _|_ 107970
+Mouse _|_ Moved _|_ (686, 489) _|_ 13 _|_ 45 _|_ 12 _|_ 183878
+Mouse _|_ Released.Button.left _|_ (686, 189) _|_ 13 _|_ 45 _|_ 12 _|_ 196785
+Mouse _|_ Moved _|_ (686, 457) _|_ 13 _|_ 45 _|_ 12 _|_ 197677
+Mouse _|_ Moved _|_ (687, 440) _|_ 13 _|_ 45 _|_ 12 _|_ 210442
+Voice_C _|_ 2nd step _|_ Whats the 2nd step _|_ 13 _|_ 45 _|_ 19 _|_ 966882
+Voice_U _|_ 2nd step _|_ enter the password _|_ 13 _|_ 45 _|_ 28 _|_ 889356
+Keyboard _|_ Pressed _|_ '1' _|_ 13 _|_ 45 _|_ 35 _|_ 385769
+Keyboard _|_ Released _|_ '1' _|_ 13 _|_ 45 _|_ 35 _|_ 515394
+Keyboard _|_ Pressed _|_ Key.shift _|_ 13 _|_ 45 _|_ 35 _|_ 962662
+Keyboard _|_ Pressed _|_ '#' _|_ 13 _|_ 45 _|_ 36 _|_ 240248
+Keyboard _|_ Released _|_ Key.shift _|_ 13 _|_ 45 _|_ 36 _|_ 314426
+Keyboard _|_ Released _|_ '3' _|_ 13 _|_ 45 _|_ 36 _|_ 331565
+Keyboard _|_ Pressed _|_ '6' _|_ 13 _|_ 45 _|_ 36 _|_ 860525
+Keyboard _|_ Released _|_ '6' _|_ 13 _|_ 45 _|_ 36 _|_ 926224
+Keyboard _|_ Pressed _|_ Key.shift _|_ 13 _|_ 45 _|_ 37 _|_ 083918
+Keyboard _|_ Pressed _|_ '@' _|_ 13 _|_ 45 _|_ 37 _|_ 258126
+Keyboard _|_ Released _|_ '@' _|_ 13 _|_ 45 _|_ 37 _|_ 336839
+Keyboard _|_ Pressed _|_ 'J' _|_ 13 _|_ 45 _|_ 37 _|_ 593050
+Keyboard _|_ Released _|_ 'J' _|_ 13 _|_ 45 _|_ 37 _|_ 649471
+Keyboard _|_ Pressed _|_ 'V' _|_ 13 _|_ 45 _|_ 37 _|_ 828303
+Keyboard _|_ Released _|_ 'V' _|_ 13 _|_ 45 _|_ 37 _|_ 910708
+Keyboard _|_ Pressed _|_ 'T' _|_ 13 _|_ 45 _|_ 38 _|_ 022056
+Keyboard _|_ Released _|_ 'T' _|_ 13 _|_ 45 _|_ 38 _|_ 077216
+Keyboard _|_ Released _|_ Key.shift _|_ 13 _|_ 45 _|_ 38 _|_ 149951
+Keyboard _|_ Pressed _|_ 'k' _|_ 13 _|_ 45 _|_ 38 _|_ 444806
+Keyboard _|_ Released _|_ 'k' _|_ 13 _|_ 45 _|_ 38 _|_ 508231
+Keyboard _|_ Pressed _|_ 'z' _|_ 13 _|_ 45 _|_ 38 _|_ 609834
+Keyboard _|_ Released _|_ 'z' _|_ 13 _|_ 45 _|_ 38 _|_ 694185
+Keyboard _|_ Pressed _|_ 'n' _|_ 13 _|_ 45 _|_ 38 _|_ 773670
+Keyboard _|_ Released _|_ 'n' _|_ 13 _|_ 45 _|_ 38 _|_ 838220
+Keyboard _|_ Pressed _|_ Key.enter _|_ 13 _|_ 45 _|_ 44 _|_ 994230
+Keyboard _|_ Released _|_ Key.enter _|_ 13 _|_ 45 _|_ 45 _|_ 047404

@@ -1,0 +1,15 @@
+Voice_C _|_ Main Task _|_ Whats the Main Task _|_ 15 _|_ 29 _|_ 37 _|_ 737870
+Voice_U _|_ Main Task _|_ open google chrome _|_ 15 _|_ 30 _|_ 00 _|_ 450257
+Screen_Recorder _|_ Main Task _|_ Blank Field _|_ 15 _|_ 30 _|_ 01 _|_ 554887
+Voice_C _|_ 1st step _|_ Whats the 1st step _|_ 15 _|_ 30 _|_ 01 _|_ 563105
+Voice_U _|_ 1st step _|_ open google chrome from the taskbar _|_ 15 _|_ 30 _|_ 12 _|_ 726354
+Mouse _|_ Moved _|_ (766, 212) _|_ 15 _|_ 30 _|_ 17 _|_ 191274
+Mouse _|_ Moved _|_ (25, 140) _|_ 15 _|_ 30 _|_ 18 _|_ 758486
+Mouse _|_ Pressed.Button.left _|_ (25, 140) _|_ 15 _|_ 30 _|_ 19 _|_ 399375 _|_ Icons/Icon16773.png _|_ Icons/Icon16773_shape.png _|_ Perfect
+Mouse _|_ Released.Button.left _|_ (25, 140) _|_ 15 _|_ 30 _|_ 19 _|_ 579069
+Mouse _|_ Moved _|_ (28, 143) _|_ 15 _|_ 30 _|_ 21 _|_ 848743
+Mouse _|_ Moved _|_ (387, 217) _|_ 15 _|_ 30 _|_ 22 _|_ 170032
+Keyboard _|_ Pressed _|_ Key.ctrl _|_ 15 _|_ 30 _|_ 22 _|_ 832259
+Keyboard _|_ Pressed _|_ 't' _|_ 15 _|_ 30 _|_ 23 _|_ 007999
+Keyboard _|_ Released _|_ 't' _|_ 15 _|_ 30 _|_ 23 _|_ 075188
+Keyboard _|_ Released _|_ Key.ctrl _|_ 15 _|_ 30 _|_ 23 _|_ 170005

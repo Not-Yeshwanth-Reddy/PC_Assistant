@@ -1,0 +1,21 @@
+Voice_C _|_ Main Task _|_ Whats the Main Task _|_ 15 _|_ 52 _|_ 04 _|_ 799705
+Voice_U _|_ Main Task _|_ play next song _|_ 15 _|_ 52 _|_ 31 _|_ 543091
+Screen_Recorder _|_ Main Task _|_ Blank Field _|_ 15 _|_ 52 _|_ 32 _|_ 603316
+Voice_C _|_ 1st step _|_ Whats the 1st step _|_ 15 _|_ 52 _|_ 32 _|_ 607716
+Voice_U _|_ 1st step _|_ open genome do 2 _|_ 15 _|_ 52 _|_ 43 _|_ 623730
+Keyboard _|_ Pressed _|_ Key.ctrl _|_ 15 _|_ 52 _|_ 50 _|_ 952969
+Keyboard _|_ Pressed _|_ Key.space _|_ 15 _|_ 52 _|_ 51 _|_ 082165
+Keyboard _|_ Released _|_ Key.space _|_ 15 _|_ 52 _|_ 51 _|_ 230449
+Keyboard _|_ Released _|_ Key.ctrl _|_ 15 _|_ 52 _|_ 51 _|_ 288707
+Voice_C _|_ 2nd step _|_ Whats the 2nd step _|_ 15 _|_ 52 _|_ 57 _|_ 196534
+Voice_U _|_ 2nd step _|_ type next entry centre _|_ 15 _|_ 53 _|_ 09 _|_ 019685
+Keyboard _|_ Pressed _|_ 'n' _|_ 15 _|_ 53 _|_ 16 _|_ 202847
+Keyboard _|_ Released _|_ 'n' _|_ 15 _|_ 53 _|_ 16 _|_ 334527
+Keyboard _|_ Pressed _|_ 'e' _|_ 15 _|_ 53 _|_ 16 _|_ 442628
+Keyboard _|_ Released _|_ 'e' _|_ 15 _|_ 53 _|_ 16 _|_ 590903
+Keyboard _|_ Pressed _|_ 'x' _|_ 15 _|_ 53 _|_ 17 _|_ 058746
+Keyboard _|_ Released _|_ 'x' _|_ 15 _|_ 53 _|_ 17 _|_ 175159
+Keyboard _|_ Pressed _|_ 't' _|_ 15 _|_ 53 _|_ 17 _|_ 568310
+Keyboard _|_ Released _|_ 't' _|_ 15 _|_ 53 _|_ 17 _|_ 601404
+Keyboard _|_ Pressed _|_ Key.enter _|_ 15 _|_ 53 _|_ 18 _|_ 728388
+Keyboard _|_ Released _|_ Key.enter _|_ 15 _|_ 53 _|_ 18 _|_ 80286
