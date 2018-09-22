@@ -9,8 +9,8 @@ import time
 import os
 import sys
 
-recording_start_wav_file = "Logs/recording_start.wav"
-recording_stop_wav_file = "Logs/recording_stop.wav"
+recording_start_wav_file = "DataBase/Logs/recording_start.wav"
+recording_stop_wav_file = "DataBase/Logs/recording_stop.wav"
 
 platform = sys.platform
 

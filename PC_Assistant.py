@@ -11,27 +11,25 @@ import time
 import inflect
 import speech_recognition as sr
 
-import Dynamic_Typing
-import MK_Controller
-import Merger
-import Screen_Recorder
-import Understanding
+from dynamic_typing import dynamic_typing
+from track import screen_recorder
+from repeat import control_keyboard_mouse
+from process import understand, merge
 
 # ToDO - Change Find_Train_Data Location in Windows
-User_Details_File_Name = 'Logs/User_Details.txt'
-Voice_Log_File_Name = 'Logs/Voice_Logs.txt'
-Process_Log_File_Name = 'Logs/Process_Logs.txt'
-All_Log_File_Name = 'Logs/All_Logs.txt'
-Mouse_Log_File_Name = 'Logs/Mouse_Logs.txt'
-Key_Log_File_Name = 'Logs/Key_Logs.txt'
-Temp_Log_File_Name = 'Logs/temp.txt'
-Train_Data_Location = 'Train_Data/'
-recording_start_wav_file = "Logs/recording_start.wav"
-recording_stop_wav_file = "Logs/recording_stop.wav"
+User_Details_File_Name = 'DataBase/Logs/User_Details.txt'
+Voice_Log_File_Name = 'DataBase/Logs/Voice_Logs.txt'
+Process_Log_File_Name = 'DataBase/Logs/Process_Logs.txt'
+All_Log_File_Name = 'DataBase/Logs/All_Logs.txt'
+Mouse_Log_File_Name = 'DataBase/Logs/Mouse_Logs.txt'
+Key_Log_File_Name = 'DataBase/Logs/Key_Logs.txt'
+Temp_Log_File_Name = 'DataBase/Logs/temp.txt'
+Train_Data_Location = 'DataBase/Train_Data/'
+recording_start_wav_file = "DataBase/Logs/recording_start.wav"
+recording_stop_wav_file = "DataBase/Logs/recording_stop.wav"
 
-Call_Mouse_Tracker = "./Mouse_Tracker/dist/M_Tracker/M_Tracker &"
-Call_Keyboard_Tracker = "./Keyboard_Tracker/dist/K_Tracker/K_Tracker &"
-Call_MK_Controller = "./MK_Controller/dist/MK_Controller/MK_Controller &"
+Call_Mouse_Tracker = "./mouse_tracker/dist/M_Tracker/M_Tracker &"
+Call_Keyboard_Tracker = "./keyboard_tracker/dist/K_Tracker/K_Tracker &"
 
 User_Name = "User"
 Assistant_Name = "PC_AssistANT"
@@ -102,10 +100,8 @@ def speak_it(text_note):  # Speaks text_note passed as argument
 	elif "darwin" in platform:
 		os.system('say "' + text_note + '"')
 	elif "win32" in platform:
-		for file_name in os.listdir("."):
-			if file_name.startswith("voice"):
-				os.rename(file_name, "voice.exe")
-		os.system('voice.exe "' + text_note + '"')
+		# os.system('voice.exe "' + text_note + '"')
+		os.system('google_speech "' + text_note + '"')  # Using this to make it speak
 	delay("short")  # without this sleep time, it is assigning text_note to audio_note
 
 
@@ -356,7 +352,7 @@ if "linux" in platform or "win32" in platform or "darwin" in platform:  # For Li
 			note_it_n_confirm("Main Task")
 
 			now = datetime.datetime.now()
-			call_process(Screen_Recorder)
+			call_process(screen_recorder)
 			Log = 'Screen_Recorder _|_ Main Task _|_ Blank Field _|_ ' + str(now.hour) + ' _|_ ' + str(now.minute) + ' _|_ ' + str(now.second) + ' _|_ ' + str(now.microsecond) + '\n'
 			save_log_to_file(Log)
 			heard = ""
@@ -373,7 +369,7 @@ if "linux" in platform or "win32" in platform or "darwin" in platform:  # For Li
 						now.hour) + ' _|_ ' + str(now.minute) + ' _|_ ' + str(now.second) + ' _|_ ' + str(
 						now.microsecond) + '\n'
 					save_log_to_file(Log)
-					call_process(Dynamic_Typing)
+					call_process(dynamic_typing)
 					speak_it("is there a next step?")
 					heard = hear_it()
 					if "no" in heard:
@@ -396,9 +392,9 @@ if "linux" in platform or "win32" in platform or "darwin" in platform:  # For Li
 			speak_it('Please wait a second while I Understand what you taught.')
 			step_number = 0  # Resetting step_number to '0'
 			delay("medium")
-			call_process(Merger)  # Call Merger
+			call_process(merge)  # Call Merger
 			delay("long")
-			call_process(Understanding)  # Call Understanding
+			call_process(understand)  # Call Understanding
 			speak_it("Done..!")
 			suspend()
 
@@ -406,7 +402,7 @@ if "linux" in platform or "win32" in platform or "darwin" in platform:  # For Li
 		# TYPING------------------------------------------------------
 
 		elif ("start" in audio_note or "activate" in audio_note) and "typing" in audio_note:
-			call_process(Dynamic_Typing)
+			call_process(dynamic_typing)
 			suspend()
 
 		# ---------------------------------------------------------WHAT CAN YOU
@@ -426,7 +422,7 @@ if "linux" in platform or "win32" in platform or "darwin" in platform:  # For Li
 
 		elif find_trained_data(audio_note):  # If training data is found
 			speak_it("At your Service")
-			call_process(MK_Controller)  # Calling MK_control if file is found
+			call_process(control_keyboard_mouse)  # Calling MK_control if file is found
 			speak_it("Task Completed")
 			suspend()
 
@@ -483,7 +479,3 @@ else:
 	print(" > Your Platform         -", platform)
 
 speak_it("Exiting PC Assistant")
-if "win32" in platform:
-	for filename in os.listdir("."):
-		if filename.startswith("voice"):
-			os.rename(filename, "voice.txt")
