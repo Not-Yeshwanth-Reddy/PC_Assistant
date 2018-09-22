@@ -35,8 +35,8 @@ def speek_it(text_note):								# Speaks text_note passed as argument
 	elif "win32" in platform:
 		for filename in os.listdir("."):
 			if filename.startswith("voice"):
-				os.rename(filename, "voice.exe")
-		os.system('voice.exe "' + text_note + '"')
+				os.rename(filename, "voice.txt")
+		os.system('voice.txt "' + text_note + '"')
 		for filename in os.listdir("."):
 			if filename.startswith("voice"):
 				os.rename(filename, "voice.txt")
