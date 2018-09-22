@@ -100,7 +100,7 @@ def speak_it(text_note):  # Speaks text_note passed as argument
 	elif "darwin" in platform:
 		os.system('say "' + text_note + '"')
 	elif "win32" in platform:
-		# os.system('voice.txt "' + text_note + '"')
+		# os.system('voice.exe "' + text_note + '"')
 		os.system('google_speech "' + text_note + '"')  # Using this to make it speak
 	delay("short")  # without this sleep time, it is assigning text_note to audio_note
 
