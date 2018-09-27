@@ -28,8 +28,8 @@ Train_Data_Location = 'DataBase/Train_Data/'
 recording_start_wav_file = "DataBase/Logs/recording_start.wav"
 recording_stop_wav_file = "DataBase/Logs/recording_stop.wav"
 
-Call_Mouse_Tracker = "./mouse_tracker/dist/M_Tracker/M_Tracker &"
-Call_Keyboard_Tracker = "./keyboard_tracker/dist/K_Tracker/K_Tracker &"
+Call_Mouse_Tracker = "./track_mouse/dist/track_mouse/track_mouse &"
+Call_Keyboard_Tracker = "./track_keyboard/dist/track_keyboard/track_keyboard &"
 
 User_Name = "User"
 Assistant_Name = "PC_AssistANT"
