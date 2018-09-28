@@ -28,9 +28,6 @@ Train_Data_Location = 'DataBase/Train_Data/'
 recording_start_wav_file = "DataBase/Logs/recording_start.wav"
 recording_stop_wav_file = "DataBase/Logs/recording_stop.wav"
 
-Call_Mouse_Tracker = "./track_mouse/dist/track_mouse/track_mouse &"
-Call_Keyboard_Tracker = "./track_keyboard/dist/track_keyboard/track_keyboard &"
-
 User_Name = "User"
 Assistant_Name = "PC_AssistANT"
 step_number = 0  # initializing step as int(0)
@@ -40,6 +37,16 @@ text_note = None  # initializing text_note as None
 heard = None  # initializing text_note as None
 temp = False  # declaring a temp variable for multi-purpose use
 platform = sys.platform  # Knowing which Operating System is this
+
+if "linux" in platform:
+	Call_Mouse_Tracker = "./track_mouse/dist/track_mouse/track_mouse &"
+	Call_Keyboard_Tracker = "./track_keyboard/dist/track_keyboard/track_keyboard &"
+elif "darwin" in platform:
+	Call_Mouse_Tracker = "./track_mouse/dist/track_mouse/track_mouse &"
+	Call_Keyboard_Tracker = "./track_keyboard/dist/track_keyboard/track_keyboard &"
+elif "win32" in platform:
+	Call_Mouse_Tracker = "START /B track_mouse\\dist\\track_mouse\\track_mouse"
+	Call_Keyboard_Tracker = "START  /B track_keyboard\\dist\\track_keyboard\\track_keyboard"
 
 
 def save_log_to_file(log):  # Appending Logs to .txt File
@@ -63,8 +70,8 @@ def delay(delay_time):  # time.sleep function.
 def read_user_details():  # Opens the User_Details file and returns the User_Name and Assistant's name
 	global User_Name, Assistant_Name
 	f = open(User_Details_File_Name, 'r')
-	Lines = f.readlines()
-	for line in Lines:
+	lines = f.readlines()
+	for line in lines:
 		if "User_Name" in line:
 			line = line.split(" : ")
 			User_Name = line[1][:-1]
@@ -74,12 +81,12 @@ def read_user_details():  # Opens the User_Details file and returns the User_Nam
 	return User_Name, Assistant_Name
 
 
-def change_user_details(user_name, assistant_name, heard):
-	if "my" in heard:
+def change_user_details(user_name, assistant_name, local_heard):
+	if "my" in local_heard:
 		speak_it("Your name has been recorded as " + str(user_name))
 		speak_it("What is your New User Name")
 		user_name = hear_it()
-	elif "your" in heard:
+	elif "your" in local_heard:
 		speak_it("You named me as " + str(assistant_name))
 		speak_it("What is My New Name")
 		assistant_name = hear_it()
@@ -93,28 +100,28 @@ def change_user_details(user_name, assistant_name, heard):
 	speak_it("Changes will apply after restart")
 
 
-def speak_it(text_note):  # Speaks text_note passed as argument
-	print("speaking = ", text_note)  # ----------------------------------------------
+def speak_it(local_text_note):  # Speaks local_text_note passed as argument
+	print("speaking = ", local_text_note)  # ----------------------------------------------
 	if "linux" in platform:
-		os.system('google_speech "' + text_note + '"')  # Using this to make it speak
+		os.system('google_speech "' + local_text_note + '"')  # Using this to make it speak
 	elif "darwin" in platform:
-		os.system('say "' + text_note + '"')
+		os.system('say "' + local_text_note + '"')
 	elif "win32" in platform:
-		# os.system('voice.exe "' + text_note + '"')
-		os.system('google_speech "' + text_note + '"')  # Using this to make it speak
-	delay("short")  # without this sleep time, it is assigning text_note to audio_note
+		os.system('voice.exe "' + local_text_note + '"')
+		# os.system('google_speech "' + local_text_note + '"')  # Using this to make it speak
+	delay("short")  # without this sleep time, it is assigning local_text_note to audio_note
 
 
-def speak_n_save(step_name, text_note):  # Speaks text_note passed as argument
-	now = datetime.datetime.now()  # 'now' will have the present date and time
-	Log = 'Voice_C _|_ ' + str(step_name) + " _|_ " + str(text_note) + ' _|_ ' + str(now.hour) + ' _|_ ' + str(
-		now.minute) + ' _|_ ' + str(now.second) + ' _|_ ' + str(now.microsecond) + '\n'
-	save_log_to_file(Log)
-	speak_it(text_note)
+def speak_n_save(local_step_name, local_text_note):  # Speaks local_text_note passed as argument
+	local_now = datetime.datetime.now()  # 'local_now' will have the present date and time
+	log = 'Voice_C _|_ ' + str(local_step_name) + " _|_ " + str(local_text_note) + ' _|_ ' + str(local_now.hour) + ' _|_ ' + str(
+		local_now.minute) + ' _|_ ' + str(local_now.second) + ' _|_ ' + str(local_now.microsecond) + '\n'
+	save_log_to_file(log)
+	speak_it(local_text_note)
 
 
 def the_killer(process_list):  # Kills all the other process except PC_AssistANT
-	Leave_ID = os.getpid()
+	leave_id = os.getpid()
 	if "win32" in platform:
 		os.system('TASKLIST > ' + str(Process_Log_File_Name))
 		with open(Process_Log_File_Name) as f:
@@ -124,15 +131,15 @@ def the_killer(process_list):  # Kills all the other process except PC_AssistANT
 				for Process in process_list:
 					if Process in line:
 						array.append(line)
-						Kill_ID = [int(Kill_ID) for Kill_ID in array[i].split() if Kill_ID.isdigit()]
-						Kill_ID = Kill_ID[0]
-						if not Leave_ID == Kill_ID:
-							print("Killing - python(" + str(Kill_ID) + ")")
-							kill = "taskkill /PID " + str(Kill_ID) + " /F"
+						kill_id = [int(Kill_ID) for Kill_ID in array[i].split() if Kill_ID.isdigit()]
+						kill_id = kill_id[0]
+						if not leave_id == kill_id:
+							print("Killing - python(" + str(kill_id) + ")")
+							kill = "taskkill /PID " + str(kill_id) + " /F"
 							os.system(kill)
 							print(kill)
 						i += 1
-	else:
+	elif "darwin" in platform or "linux" in platform:
 		os.system('ps -A > ' + str(Process_Log_File_Name))
 		with open(Process_Log_File_Name) as f:
 			for line in f:
@@ -140,16 +147,16 @@ def the_killer(process_list):  # Kills all the other process except PC_AssistANT
 				for Process in process_list:
 					if Process in line:
 						line3 = str(line2).split(' ')
-						Kill_ID = int(line3[0])
-						if Kill_ID != Leave_ID:
-							os.system('kill ' + str(Kill_ID))
-							print("Killed - " + str(Kill_ID))
+						kill_id = int(line3[0])
+						if kill_id != leave_id:
+							os.system('kill ' + str(kill_id))
+							print("Killed - " + str(kill_id))
 
 
-def hear_it():  # Just Listens to voice command and stores in heard
+def hear_it():  # Just Listens to voice command and stores in local_heard
 	while True:
 		try:
-			r = sr.Recognizer()  # "listens for heard"
+			r = sr.Recognizer()  # "listens for local_heard"
 			with sr.Microphone() as source:  # Source - Microphone
 				print("hearing...")  # ----------------------------------------------
 				r.pause_threshold = 1  # minimum length of silence after phrase
@@ -158,9 +165,9 @@ def hear_it():  # Just Listens to voice command and stores in heard
 				audio = r.listen(source, 10, 5)  # (source, timeout, phrase_time_limit)
 				os.system("ffplay -autoexit " + str(recording_stop_wav_file) + " -nodisp -loglevel panic")
 				print("recognizing...")  # ----------------------------------------------
-				heard = r.recognize_google(audio).lower()
-				print("heard = ", heard)
-		except (sr.UnknownValueError, sr.RequestError, sr.WaitTimeoutError) as e:
+				local_heard = r.recognize_google(audio).lower()
+				print("local_heard = ", local_heard)
+		except (sr.UnknownValueError, sr.RequestError, sr.WaitTimeoutError):
 			# os.system("ffplay -autoexit "+ str(recording_stop_wav_file)+" -nodisp -loglevel panic")
 			speak_it(
 				random.choice([
@@ -169,13 +176,13 @@ def hear_it():  # Just Listens to voice command and stores in heard
 					"what was it?",
 					"what did you say?",
 					"What was that?",
-					"I didn't get you"]))  # handelling un recougnised speech
+					"I didn't get you"]))  # handling un recognised speech
 			continue  # Re-calling the same function to listen properly
-		state = special_functions(heard)
+		state = special_functions(local_heard)
 		if state:
 			continue
 		else:
-			return heard
+			return local_heard
 
 
 def special_functions(herd):  # bla bla
@@ -218,39 +225,39 @@ def just_listen():  # Just Listens to voice command and stores in herd
 	return herd
 
 
-def note_it(step_name):  # Listens to command and logs it with step_name
-	audio_note = hear_it()
-	now = datetime.datetime.now()  # 'now' has the current time stamp
-	log = 'Voice_U _|_ ' + str(step_name) + " _|_ " + str(audio_note) + ' _|_ ' + str(now.hour) + ' _|_ ' + str(
-		now.minute) + ' _|_ ' + str(now.second) + ' _|_ ' + str(now.microsecond) + '\n'
+def note_it(local_step_name):  # Listens to command and logs it with local_step_name
+	local_audio_note = hear_it()
+	local_now = datetime.datetime.now()  # 'local_now' has the current time stamp
+	log = 'Voice_U _|_ ' + str(local_step_name) + " _|_ " + str(local_audio_note) + ' _|_ ' + str(local_now.hour) + ' _|_ ' + str(
+		local_now.minute) + ' _|_ ' + str(local_now.second) + ' _|_ ' + str(local_now.microsecond) + '\n'
 	save_log_to_file(log)
 	speak_it('Noted..')
-	return audio_note
+	return local_audio_note
 
 
-def note_it_n_confirm(step_name):  # Listens to command and logs it with step_name
+def note_it_n_confirm(local_step_name):  # Listens to command and logs it with local_step_name
 	while True:
-		audio_note = hear_it()
-		speak_it('did you just say ' + audio_note)
-		heard = hear_it()
-		if "yes" in heard or "yeah" in heard:
-			now = datetime.datetime.now()  # 'now' has the current time stamp
-			log = 'Voice_U _|_ ' + str(step_name) + " _|_ " + str(audio_note) + ' _|_ ' + str(now.hour) + ' _|_ ' + str(
-				now.minute) + ' _|_ ' + str(now.second) + ' _|_ ' + str(now.microsecond) + '\n'
+		local_audio_note = hear_it()
+		speak_it('did you just say ' + local_audio_note)
+		local_heard = hear_it()
+		if "yes" in local_heard or "yeah" in local_heard:
+			local_now = datetime.datetime.now()  # 'local_now' has the current time stamp
+			log = 'Voice_U _|_ ' + str(local_step_name) + " _|_ " + str(local_audio_note) + ' _|_ ' + str(local_now.hour) + ' _|_ ' + str(
+				local_now.minute) + ' _|_ ' + str(local_now.second) + ' _|_ ' + str(local_now.microsecond) + '\n'
 			save_log_to_file(log)
 			speak_it('Noted..')
-			return audio_note
-		elif "no" in heard:
+			return local_audio_note
+		elif "no" in local_heard:
 			speak_it("Then Tell it again Clearly")
 			continue
 		else:
 			speak_it("reply Yes or No..!")
 
 
-def inflecting(step_number):  # Converting int(1) to Str(First)...
+def inflecting(local_step_number):  # Converting int(1) to Str(First)...
 	p = inflect.engine()  # If input is 1
-	StrStep = p.ordinal(step_number) + " step"
-	return StrStep  # Output 1st
+	str_step = p.ordinal(local_step_number) + " step"
+	return str_step  # Output 1st
 
 
 def call_process(process_name):  # function used to call a process
@@ -258,13 +265,13 @@ def call_process(process_name):  # function used to call a process
 	print("Called " + str(process_name))  # This will call the MainFunction() from the python Modules
 
 
-def find_trained_data(audio_note):  # Finds for file name with 'audio_note' in it's Name.
+def find_trained_data(local_audio_note):  # Finds for file name with 'local_audio_note' in it's Name.
 	temp_list = os.listdir(Train_Data_Location)
 	for line in temp_list:
-		if audio_note in line and ".txt" in line:
-			audio_note = Train_Data_Location + line
+		if local_audio_note in line and ".txt" in line:
+			local_audio_note = Train_Data_Location + line
 			temp_file = open(Temp_Log_File_Name, 'w')
-			temp_file.writelines(audio_note)
+			temp_file.writelines(local_audio_note)
 			temp_file.close()
 			print("data found...")
 			return True
@@ -311,8 +318,7 @@ def suspend():  # Using busy waiting until wake keyword is herd.
 			"Hey, " + User_Name]))
 
 
-# -----------------------------------------------------MAIN
-# CODE------------------------------------------------------------
+# -----------------------------------------------------MAIN CODE------------------------------------------------------------
 
 if "linux" in platform or "win32" in platform or "darwin" in platform:  # For Linux Mac and Windows Machines
 

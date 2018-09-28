@@ -33,13 +33,7 @@ def speek_it(text_note):								# Speaks text_note passed as argument
 	elif "darwin" in platform:
 		os.system('say "' + text_note + '"')
 	elif "win32" in platform:
-		for filename in os.listdir("."):
-			if filename.startswith("voice"):
-				os.rename(filename, "voice.exe")
 		os.system('voice.exe "' + text_note + '"')
-		for filename in os.listdir("."):
-			if filename.startswith("voice"):
-				os.rename(filename, "voice.exe")
 	delay("short")										# without this sleep time, it is assigning text_note to audio_note
 
 

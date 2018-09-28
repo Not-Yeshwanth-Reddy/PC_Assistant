@@ -20,7 +20,7 @@ def main_function():
 	elif "darwin" in platform:
 		pass
 	elif "win32" in platform:
-		terminal_command = ("ffmpeg -rtbufsize 1500M -f dshow -i video=\"UScreenCapture\" -r 100 -vcodec libx264 -qp 0 " + str(ScreenRecord_File_Name) + " -y -loglevel panic &")
+		terminal_command = ("START /B ffmpeg -f gdigrab -i desktop -framerate 60 -vcodec libx264 " + str(ScreenRecord_File_Name) + " -y -loglevel panic")
 		os.system(terminal_command)							# Terminal command for screen Recording
 	else:
 		print("Sorry, platform not supported")
