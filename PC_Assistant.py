@@ -12,21 +12,21 @@ import inflect
 import speech_recognition as sr
 
 from dynamic_typing import dynamic_typing
-from track import screen_recorder
+from recording import screen_recorder
 from repeat import control_keyboard_mouse
 from process import understand, merge
 
 # ToDO - Change Find_Train_Data Location in Windows
-User_Details_File_Name = 'DataBase/Logs/User_Details.txt'
-Voice_Log_File_Name = 'DataBase/Logs/Voice_Logs.txt'
-Process_Log_File_Name = 'DataBase/Logs/Process_Logs.txt'
-All_Log_File_Name = 'DataBase/Logs/All_Logs.txt'
-Mouse_Log_File_Name = 'DataBase/Logs/Mouse_Logs.txt'
-Key_Log_File_Name = 'DataBase/Logs/Key_Logs.txt'
-Temp_Log_File_Name = 'DataBase/Logs/temp.txt'
-Train_Data_Location = 'DataBase/Train_Data/'
-recording_start_wav_file = "DataBase/Logs/recording_start.wav"
-recording_stop_wav_file = "DataBase/Logs/recording_stop.wav"
+User_Details_File_Name = 'db/Logs/User_Details.txt'
+Voice_Log_File_Name = 'db/Logs/Voice_Logs.txt'
+Process_Log_File_Name = 'db/Logs/Process_Logs.txt'
+All_Log_File_Name = 'db/Logs/All_Logs.txt'
+Mouse_Log_File_Name = 'db/Logs/Mouse_Logs.txt'
+Key_Log_File_Name = 'db/Logs/Key_Logs.txt'
+Temp_Log_File_Name = 'db/Logs/temp.txt'
+Train_Data_Location = 'db/Train_Data/'
+recording_start_wav_file = "db/Logs/recording_start.wav"
+recording_stop_wav_file = "db/Logs/recording_stop.wav"
 
 User_Name = "User"
 Assistant_Name = "PC_AssistANT"
@@ -39,14 +39,14 @@ temp = False  # declaring a temp variable for multi-purpose use
 platform = sys.platform  # Knowing which Operating System is this
 
 if "linux" in platform:
-	Call_Mouse_Tracker = "./track_mouse/dist/track_mouse/track_mouse &"
-	Call_Keyboard_Tracker = "./track_keyboard/dist/track_keyboard/track_keyboard &"
+	Call_Mouse_Tracker = "./recording/linux//track_mouse/dist/track_mouse/track_mouse &"
+	Call_Keyboard_Tracker = "./recording/linux/track_keyboard/dist/track_keyboard/track_keyboard &"
 elif "darwin" in platform:
-	Call_Mouse_Tracker = "./track_mouse/dist/track_mouse/track_mouse &"
-	Call_Keyboard_Tracker = "./track_keyboard/dist/track_keyboard/track_keyboard &"
+	Call_Mouse_Tracker = "./recording/mac/track_mouse/dist/track_mouse/track_mouse &"
+	Call_Keyboard_Tracker = "./recording/mac/track_keyboard/dist/track_keyboard/track_keyboard &"
 elif "win32" in platform:
-	Call_Mouse_Tracker = "START /B track_mouse\\dist\\track_mouse\\track_mouse"
-	Call_Keyboard_Tracker = "START  /B track_keyboard\\dist\\track_keyboard\\track_keyboard"
+	Call_Mouse_Tracker = "START /B recording\\win\\track_mouse\\dist\\track_mouse\\track_mouse"
+	Call_Keyboard_Tracker = "START  /B recording\\win\\track_keyboard\\dist\\track_keyboard\\track_keyboard"
 
 
 def save_log_to_file(log):  # Appending Logs to .txt File

