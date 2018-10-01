@@ -14,7 +14,8 @@ import speech_recognition as sr
 from dynamic_typing import dynamic_typing
 from recording import screen_recorder
 from repeat import control_keyboard_mouse
-from process import understand, merge
+from Learning_Mode import understand
+from logs_manager import combine
 
 # ToDO - Change Find_Train_Data Location in Windows
 User_Details_File_Name = 'db/Logs/User_Details.txt'
@@ -120,7 +121,7 @@ def speak_n_save(local_step_name, local_text_note):  # Speaks local_text_note pa
 	speak_it(local_text_note)
 
 
-def the_killer(process_list):  # Kills all the other process except PC_AssistANT
+def the_killer(process_list):  # Kills all the other Learning_Mode except PC_AssistANT
 	leave_id = os.getpid()
 	if "win32" in platform:
 		os.system('TASKLIST > ' + str(Process_Log_File_Name))
@@ -260,7 +261,7 @@ def inflecting(local_step_number):  # Converting int(1) to Str(First)...
 	return str_step  # Output 1st
 
 
-def call_process(process_name):  # function used to call a process
+def call_process(process_name):  # function used to call a Learning_Mode
 	process_name.main_function()
 	print("Called " + str(process_name))  # This will call the MainFunction() from the python Modules
 
@@ -346,11 +347,11 @@ if "linux" in platform or "win32" in platform or "darwin" in platform:  # For Li
 		# -------------------------------------------------------------LEARNING
 		# ------------------------------------------------------------
 
-		if ("learn" in audio_note) or ("teach" in audio_note and "you" in audio_note):  # Learning Code
+		if ("learn" in audio_note) or ("teach" in audio_note and "you" in audio_note):  # Learning_Mode Code
 			clear_logs()
 			speak_it(
 				random.choice([
-					"Learning Mode Activated",
+					"Learning_Mode Mode Activated",
 					"""I'm Ready to Learn""",
 					"Getting Ready to Learn",
 					"Lets get started"]))
@@ -393,12 +394,12 @@ if "linux" in platform or "win32" in platform or "darwin" in platform:  # For Li
 						heard = just_listen()
 					the_killer(["K_Tracker", "M_Tracker"])  # Stopping the trackers.
 
-			speak_it('Exiting Learning Mode')
+			speak_it('Exiting Learning_Mode Mode')
 			the_killer(["K_Tracker", "M_Tracker", "ffmpeg"])  # Stopping the trackers.
 			speak_it('Please wait a second while I Understand what you taught.')
 			step_number = 0  # Resetting step_number to '0'
 			delay("medium")
-			call_process(merge)  # Call Merger
+			call_process(combine)  # Call Merger
 			delay("long")
 			call_process(understand)  # Call Understanding
 			speak_it("Done..!")

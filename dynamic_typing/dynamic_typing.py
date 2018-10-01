@@ -129,4 +129,4 @@ def main_function():
 		heard = hear_it()
 	speek_it("Exiting Typing mode")
 
-# main_function()
+# search()

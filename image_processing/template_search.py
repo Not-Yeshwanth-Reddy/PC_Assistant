@@ -1,18 +1,19 @@
 # """
-# Template Finding algorythm using 6 different methods.
+# Template Finding algorithm using 6 different methods.
+# Finds the given template on the screen. (from the ScreenShot)
 # """
-from collections import Counter
-
+import numpy
 import cv2
 import pyautogui
 from matplotlib import pyplot as plt
 
+# Sample data -
+# > Log_list = ["Mouse _|_ Moved _|_ (1214, 587) _|_ 11 _|_ 50 _|_ 47 _|_ 779491", "Mouse _|_ Pressed.Button.right _|_ (1312, 708) _|_ 11 _|_ 50 _|_ 45 _|_ 662823 _|_ None _|_ None _|_ Icon_Not_Found", "Mouse _|_ Pressed.Button.left _|_ (1214, 591) _|_ 11 _|_ 50 _|_ 48 _|_ 328612 _|_ Icons/Icon26969.png _|_ Icons/Icon16620_shape.png _|_ Perfect"]
+# > Log_Number = 2
+# This code gives boundaries of the template from screen shot.
 
-# Log_list = ["Mouse _|_ Moved _|_ (1214, 587) _|_ 11 _|_ 50 _|_ 47 _|_ 779491", "Mouse _|_ Pressed.Button.right _|_ (1312, 708) _|_ 11 _|_ 50 _|_ 45 _|_ 662823 _|_ None _|_ None _|_ Icon_Not_Found", "Mouse _|_ Pressed.Button.left _|_ (1214, 591) _|_ 11 _|_ 50 _|_ 48 _|_ 328612 _|_ Icons/Icon26969.png _|_ Icons/Icon16620_shape.png _|_ Perfect"]
-# Log_Number = 2
 
-
-def main_function(log_list, log_number):
+def search(log_list, log_number, accuracy):
 	left = []
 	right = []
 	top = []
@@ -27,9 +28,9 @@ def main_function(log_list, log_number):
 	# All the 6 methods for comparison in a list
 	methods = ['cv2.TM_CCOEFF', 'cv2.TM_SQDIFF', 'cv2.TM_CCOEFF_NORMED', 'cv2.TM_CCORR', 'cv2.TM_CCORR_NORMED', 'cv2.TM_SQDIFF_NORMED']
 
-	for meth in methods:
+	for method in methods:
 		img = img2.copy()
-		method = eval(meth)
+		method = eval(method)
 
 		# Apply template Matching
 		res = cv2.matchTemplate(img, template, method)
@@ -52,12 +53,12 @@ def main_function(log_list, log_number):
 		plt.title('Matching Result'), plt.xticks([]), plt.yticks([])
 		plt.subplot(122), plt.imshow(img, cmap='gray')
 		plt.title('Detected Point'), plt.xticks([]), plt.yticks([])
-		plt.suptitle(meth)
-
-	left = (Counter(left).most_common(1))[0]  # Getting the most frequent element in the array
-	top = (Counter(top).most_common(1))[0]  # Getting the most frequent element in the array
-	right = (Counter(right).most_common(1))[0]  # Getting the most frequent element in the array
-	bottom = (Counter(bottom).most_common(1))[0]  # Getting the most frequent element in the array
+		plt.suptitle(method)
+	
+	left = numpy.bincount(left).argmax()						# Getting the most frequent element in the array
+	top = numpy.bincount(top).argmax()							# Getting the most frequent element in the array
+	right = numpy.bincount(right).argmax()						# Getting the most frequent element in the array
+	bottom = numpy.bincount(bottom).argmax()					# Getting the most frequent element in the array
 	# print("left : ", left)
 	# print("top : ", top)
 	# print("right : ", right)
@@ -68,5 +69,5 @@ def main_function(log_list, log_number):
 	else:
 		return icon_location, False
 
-# Icon_Location, Found =  main_function(Log_list, Log_Number)
+# Icon_Location, Found =  search(Log_list, Log_Number)
 # print(Icon_Location, Found)

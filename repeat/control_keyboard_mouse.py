@@ -5,7 +5,7 @@ NnY_Packages
 import time
 
 from dynamic_typing import dynamic_typing
-from repeat import find_icons
+from image_processing import template_search
 import pyautogui
 
 Temp_Log_File_Name = 'Logs/temp.txt'
@@ -154,7 +154,7 @@ def search_for_icon_on_screen(log_list, log_number):	# Takes screenshot and sear
 		if icon_state[9] == "Icon_Not_Found":
 			return False
 		else:
-			icon_location, found_status = find_icons.main_function(log_list, log_number)
+			icon_location, found_status = template_search.search(log_list, log_number)
 			mouse_location = (((icon_location[0][0]+icon_location[1][0])/2), (icon_location[0][1]+icon_location[1][1])/2)
 			if "Button.left" in line and found_status:
 				(x, y) = mouse_location
@@ -212,4 +212,4 @@ def main_function():										# The Driver Code
 
 		log_number += 1
 
-# main_function()
+# search()
