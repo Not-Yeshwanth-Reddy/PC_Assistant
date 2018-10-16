@@ -5,7 +5,7 @@ NnY_Packages
 
 import datetime
 from image_processing import get_action_frames, to_Black_n_White, group_pixels, crop_section, draw_shape, get_group_size
-from logs_manager import insert_icon_name, remove_unwanted_mouse_logs, search_for_safe_time
+from database_manager import insert_icon_name, remove_unwanted_mouse_logs, search_for_safe_time
 
 Recorded_Video = 'Logs/screen_record.mp4'
 Final_Icon_Name = "Icons/Icon"# %d.png

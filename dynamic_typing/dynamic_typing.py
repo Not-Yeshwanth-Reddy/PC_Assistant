@@ -7,12 +7,11 @@ import speech_recognition as sr
 import random
 import time
 import os
-import sys
+from Data import strings
 
-recording_start_wav_file = "db/Logs/recording_start.wav"
-recording_stop_wav_file = "db/Logs/recording_stop.wav"
-
-platform = sys.platform
+recording_start_wav_file = strings.recording_start_wav_file
+recording_stop_wav_file = strings.recording_stop_wav_file
+platform = strings.platform
 
 
 def delay(delay_in_sec):										# time.sleep function

@@ -6,7 +6,7 @@ import datetime
 
 from pynput.mouse import Listener as MListener
 
-Log_File_Name = 'db/Logs/Mouse_Logs.txt'
+Log_File_Name = 'DB/Logs/Mouse_Logs.txt'
 
 
 def on_move(x, y):

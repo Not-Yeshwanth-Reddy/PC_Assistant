@@ -5,67 +5,46 @@ NnY_Packages
 import datetime
 import os
 import random
-import sys
-import time
-
 import inflect
-import speech_recognition as sr
 
 from dynamic_typing import dynamic_typing
 from recording import screen_recorder
 from repeat import control_keyboard_mouse
-from Learning_Mode import understand
-from logs_manager import combine
+from tasks import understand, process_killer, add_delay
+from database_manager import combine_logs, append_log
+from Data import strings
+from Voice import speak_it, hear_it
 
 # ToDO - Change Find_Train_Data Location in Windows
-User_Details_File_Name = 'db/Logs/User_Details.txt'
-Voice_Log_File_Name = 'db/Logs/Voice_Logs.txt'
-Process_Log_File_Name = 'db/Logs/Process_Logs.txt'
-All_Log_File_Name = 'db/Logs/All_Logs.txt'
-Mouse_Log_File_Name = 'db/Logs/Mouse_Logs.txt'
-Key_Log_File_Name = 'db/Logs/Key_Logs.txt'
-Temp_Log_File_Name = 'db/Logs/temp.txt'
-Train_Data_Location = 'db/Train_Data/'
-recording_start_wav_file = "db/Logs/recording_start.wav"
-recording_stop_wav_file = "db/Logs/recording_stop.wav"
+User_Details_File_Name = strings.User_Details_File_Name
+Voice_Log_File_Name = strings.Voice_Log_File_Name
+Process_Log_File_Name = strings.Process_Log_File_Name
+All_Log_File_Name = strings.All_Log_File_Name
+Mouse_Log_File_Name = strings.Mouse_Log_File_Name
+Key_Log_File_Name = strings.Key_Log_File_Name
+Temp_Log_File_Name = strings.Temp_Log_File_Name
+Train_Data_Location = strings.Train_Data_Location
+recording_start_wav_file = strings.recording_start_wav_file
+recording_stop_wav_file = strings.recording_stop_wav_file
 
-User_Name = "User"
-Assistant_Name = "PC_AssistANT"
+User_Name = strings.User_Name
+Assistant_Name = strings.Assistant_Name
 step_number = 0  # initializing step as int(0)
 step_name = None  # initializing step_name as str(main task)
 audio_note = None  # initializing audio_note as None
 text_note = None  # initializing text_note as None
 heard = None  # initializing text_note as None
 temp = False  # declaring a temp variable for multi-purpose use
-platform = sys.platform  # Knowing which Operating System is this
+platform = strings.platform  # Knowing which Operating System is this
 
-if "linux" in platform:
-	Call_Mouse_Tracker = "./recording/linux//track_mouse/dist/track_mouse/track_mouse &"
-	Call_Keyboard_Tracker = "./recording/linux/track_keyboard/dist/track_keyboard/track_keyboard &"
-elif "darwin" in platform:
-	Call_Mouse_Tracker = "./recording/mac/track_mouse/dist/track_mouse/track_mouse &"
-	Call_Keyboard_Tracker = "./recording/mac/track_keyboard/dist/track_keyboard/track_keyboard &"
-elif "win32" in platform:
-	Call_Mouse_Tracker = "START /B recording\\win\\track_mouse\\dist\\track_mouse\\track_mouse"
-	Call_Keyboard_Tracker = "START  /B recording\\win\\track_keyboard\\dist\\track_keyboard\\track_keyboard"
+Call_Mouse_Tracker = strings.Call_Mouse_Tracker
+Call_Keyboard_Tracker = strings.Call_Keyboard_Tracker
 
-
-def save_log_to_file(log):  # Appending Logs to .txt File
-	print(log)
-	f = open(Voice_Log_File_Name, 'a')  # Saving things in Log_file
-	f.write(log)
-	f.close()  # Flushing the buffer and saving file
-
-
-def delay(delay_time):  # time.sleep function.
-	if delay_time == "short":
-		time.sleep(0.1)
-	elif delay_time == "medium":
-		time.sleep(0.3)
-	elif delay_time == "long":
-		time.sleep(0.5)
-	else:
-		time.sleep(int(delay_time))
+# def save_log_to_file(log):  # Appending Logs to .txt File
+# 	print(log)
+# 	f = open(Voice_Log_File_Name, 'a')  # Saving things in Log_file
+# 	f.write(log)
+# 	f.close()  # Flushing the buffer and saving file
 
 
 def read_user_details():  # Opens the User_Details file and returns the User_Name and Assistant's name
@@ -84,121 +63,109 @@ def read_user_details():  # Opens the User_Details file and returns the User_Nam
 
 def change_user_details(user_name, assistant_name, local_heard):
 	if "my" in local_heard:
-		speak_it("Your name has been recorded as " + str(user_name))
-		speak_it("What is your New User Name")
-		user_name = hear_it()
+		speak_it.say("Your name has been recorded as " + str(user_name))
+		speak_it.say("What is your New User Name")
+		user_name = hear_it.hear()
 	elif "your" in local_heard:
-		speak_it("You named me as " + str(assistant_name))
-		speak_it("What is My New Name")
-		assistant_name = hear_it()
+		speak_it.say("You named me as " + str(assistant_name))
+		speak_it.say("What is My New Name")
+		assistant_name = hear_it.hear()
 	f = open(User_Details_File_Name, 'w')
 	log = "user_name : " + str(user_name) + "\n"
 	f.write(log)
 	log = "assistant_name : " + str(assistant_name) + "\n"
 	f.write(log)
 	f.close()
-	speak_it("Changed successfully")
-	speak_it("Changes will apply after restart")
+	speak_it.say("Changed successfully")
+	speak_it.say("Changes will apply after restart")
 
 
-def speak_it(local_text_note):  # Speaks local_text_note passed as argument
-	print("speaking = ", local_text_note)  # ----------------------------------------------
-	if "linux" in platform:
-		os.system('google_speech "' + local_text_note + '"')  # Using this to make it speak
-	elif "darwin" in platform:
-		os.system('say "' + local_text_note + '"')
-	elif "win32" in platform:
-		os.system('voice.exe "' + local_text_note + '"')
-		# os.system('google_speech "' + local_text_note + '"')  # Using this to make it speak
-	delay("short")  # without this sleep time, it is assigning local_text_note to audio_note
+# def speak_n_save(local_step_name, local_text_note):  # Speaks local_text_note passed as argument
+# 	local_now = datetime.datetime.now()  # 'local_now' will have the present date and time
+# 	log = 'Voice_C _|_ ' + str(local_step_name) + " _|_ " + str(local_text_note) + ' _|_ ' + str(local_now.hour) + ' _|_ ' + str(
+# 		local_now.minute) + ' _|_ ' + str(local_now.second) + ' _|_ ' + str(local_now.microsecond) + '\n'
+# 	save_log_to_file(log)
+# 	speak_it.say(local_text_note)
 
+#
+# def the_killer(process_list):  								# Kills all the other Learning_Mode except PC_AssistANT
+# 	leave_id = os.getpid()
+# 	if "win32" in platform:
+# 		os.system('TASKLIST > ' + str(Process_Log_File_Name))
+# 		with open(Process_Log_File_Name) as f:
+# 			array = []
+# 			i = 0
+# 			for line in f:
+# 				for Process in process_list:
+# 					if Process in line:
+# 						array.append(line)
+# 						kill_id = [int(Kill_ID) for Kill_ID in array[i].split() if Kill_ID.isdigit()]
+# 						kill_id = kill_id[0]
+# 						if not leave_id == kill_id:
+# 							print("Killing - python(" + str(kill_id) + ")")
+# 							kill = "taskkill /PID " + str(kill_id) + " /F"
+# 							os.system(kill)
+# 							print(kill)
+# 						i += 1
+# 	elif "darwin" in platform or "linux" in platform:
+# 		os.system('ps -A > ' + str(Process_Log_File_Name))
+# 		with open(Process_Log_File_Name) as f:
+# 			for line in f:
+# 				line2 = line.lstrip()
+# 				for Process in process_list:
+# 					if Process in line:
+# 						line3 = str(line2).split(' ')
+# 						kill_id = int(line3[0])
+# 						if kill_id != leave_id:
+# 							os.system('kill ' + str(kill_id))
+# 							print("Killed - " + str(kill_id))
 
-def speak_n_save(local_step_name, local_text_note):  # Speaks local_text_note passed as argument
-	local_now = datetime.datetime.now()  # 'local_now' will have the present date and time
-	log = 'Voice_C _|_ ' + str(local_step_name) + " _|_ " + str(local_text_note) + ' _|_ ' + str(local_now.hour) + ' _|_ ' + str(
-		local_now.minute) + ' _|_ ' + str(local_now.second) + ' _|_ ' + str(local_now.microsecond) + '\n'
-	save_log_to_file(log)
-	speak_it(local_text_note)
-
-
-def the_killer(process_list):  # Kills all the other Learning_Mode except PC_AssistANT
-	leave_id = os.getpid()
-	if "win32" in platform:
-		os.system('TASKLIST > ' + str(Process_Log_File_Name))
-		with open(Process_Log_File_Name) as f:
-			array = []
-			i = 0
-			for line in f:
-				for Process in process_list:
-					if Process in line:
-						array.append(line)
-						kill_id = [int(Kill_ID) for Kill_ID in array[i].split() if Kill_ID.isdigit()]
-						kill_id = kill_id[0]
-						if not leave_id == kill_id:
-							print("Killing - python(" + str(kill_id) + ")")
-							kill = "taskkill /PID " + str(kill_id) + " /F"
-							os.system(kill)
-							print(kill)
-						i += 1
-	elif "darwin" in platform or "linux" in platform:
-		os.system('ps -A > ' + str(Process_Log_File_Name))
-		with open(Process_Log_File_Name) as f:
-			for line in f:
-				line2 = line.lstrip()
-				for Process in process_list:
-					if Process in line:
-						line3 = str(line2).split(' ')
-						kill_id = int(line3[0])
-						if kill_id != leave_id:
-							os.system('kill ' + str(kill_id))
-							print("Killed - " + str(kill_id))
-
-
-def hear_it():  # Just Listens to voice command and stores in local_heard
-	while True:
-		try:
-			r = sr.Recognizer()  # "listens for local_heard"
-			with sr.Microphone() as source:  # Source - Microphone
-				print("hearing...")  # ----------------------------------------------
-				r.pause_threshold = 1  # minimum length of silence after phrase
-				r.adjust_for_ambient_noise(source, duration=1)
-				os.system("ffplay -autoexit " + str(recording_start_wav_file) + " -nodisp -loglevel panic")
-				audio = r.listen(source, 10, 5)  # (source, timeout, phrase_time_limit)
-				os.system("ffplay -autoexit " + str(recording_stop_wav_file) + " -nodisp -loglevel panic")
-				print("recognizing...")  # ----------------------------------------------
-				local_heard = r.recognize_google(audio).lower()
-				print("local_heard = ", local_heard)
-		except (sr.UnknownValueError, sr.RequestError, sr.WaitTimeoutError):
-			# os.system("ffplay -autoexit "+ str(recording_stop_wav_file)+" -nodisp -loglevel panic")
-			speak_it(
-				random.choice([
-					"Can you repeat it?",
-					"I didn't hear you properly.",
-					"what was it?",
-					"what did you say?",
-					"What was that?",
-					"I didn't get you"]))  # handling un recognised speech
-			continue  # Re-calling the same function to listen properly
-		state = special_functions(local_heard)
-		if state:
-			continue
-		else:
-			return local_heard
+#
+# def hear_it():  # Just Listens to voice command and stores in local_heard
+# 	while True:
+# 		try:
+# 			r = sr.Recognizer()  # "listens for local_heard"
+# 			with sr.Microphone() as source:  # Source - Microphone
+# 				print("hearing...")  # ----------------------------------------------
+# 				r.pause_threshold = 1  # minimum length of silence after phrase
+# 				r.adjust_for_ambient_noise(source, duration=1)
+# 				os.system("ffplay -autoexit " + str(recording_start_wav_file) + " -nodisp -loglevel panic")
+# 				audio = r.listen(source, 10, 5)  # (source, timeout, phrase_time_limit)
+# 				os.system("ffplay -autoexit " + str(recording_stop_wav_file) + " -nodisp -loglevel panic")
+# 				print("recognizing...")  # ----------------------------------------------
+# 				local_heard = r.recognize_google(audio).lower()
+# 				print("local_heard = ", local_heard)
+# 		except (sr.UnknownValueError, sr.RequestError, sr.WaitTimeoutError):
+# 			# os.system("ffplay -autoexit "+ str(recording_stop_wav_file)+" -nodisp -loglevel panic")
+# 			speak_it.say(
+# 				random.choice([
+# 					"Can you repeat it?",
+# 					"I didn't hear you properly.",
+# 					"what was it?",
+# 					"what did you say?",
+# 					"What was that?",
+# 					"I didn't get you"]))  # handling un recognised speech
+# 			continue  # Re-calling the same function to listen properly
+# 		state = special_functions(local_heard)
+# 		if state:
+# 			continue
+# 		else:
+# 			return local_heard
 
 
 def special_functions(herd):  # bla bla
 	if "shutdown" in herd or "exit" in herd:
-		the_killer(["K_Tracker", "M_Tracker", "ffmpeg"])
-		speak_it("Exiting PC Assistant")
+		process_killer.the_killer(["K_Tracker", "M_Tracker", "ffmpeg"])
+		speak_it.say("Exiting PC Assistant")
 		exit()
 	elif "suspend" in herd or "go to sleep" in herd:
 		suspend()
 		return True
 	elif "what" in herd and "my" in herd and "name" in herd:
-		speak_it("Your name has been recorded as " + User_Name)
+		speak_it.say("Your name has been recorded as " + User_Name)
 		return True
 	elif "what" in herd and "your" in herd and "name" in herd:
-		speak_it("My name is " + Assistant_Name)
+		speak_it.say("My name is " + Assistant_Name)
 		return True
 	elif "change" in herd and "name" in herd and ("your" in herd or "my" in herd):
 		change_user_details(User_Name, Assistant_Name, herd)
@@ -206,53 +173,53 @@ def special_functions(herd):  # bla bla
 	else:
 		return False
 
-
-def just_listen():  # Just Listens to voice command and stores in herd
-	while True:  # Doesn't speek anything if didnt hear anything
-		r = sr.Recognizer()  # "listens for herd"
-		try:
-			with sr.Microphone() as source:  # Source - Microphone
-				r.pause_threshold = 1  # minimum length of silence after phrase
-				r.adjust_for_ambient_noise(source, duration=1)
-				# print("hearing...")								#----------------------------------------------
-				audio = r.listen(source, 4, 4)  # (source, timeout, phrase_time_limit)
-				# print("recognizing...")
-				herd = r.recognize_google(audio).lower()
-				print("herd = ", herd)  # ----------------------------------------------
-		except (sr.UnknownValueError, sr.RequestError, sr.WaitTimeoutError) as e:
-			print(e)
-			continue  # Re-calling the same function to listen properly
-		break
-	return herd
+#
+# def just_listen():  # Just Listens to voice command and stores in herd
+# 	while True:  # Doesn't speek anything if didnt hear anything
+# 		r = sr.Recognizer()  # "listens for herd"
+# 		try:
+# 			with sr.Microphone() as source:  # Source - Microphone
+# 				r.pause_threshold = 1  # minimum length of silence after phrase
+# 				r.adjust_for_ambient_noise(source, duration=1)
+# 				# print("hearing...")								#----------------------------------------------
+# 				audio = r.listen(source, 4, 4)  # (source, timeout, phrase_time_limit)
+# 				# print("recognizing...")
+# 				herd = r.recognize_google(audio).lower()
+# 				print("herd = ", herd)  # ----------------------------------------------
+# 		except (sr.UnknownValueError, sr.RequestError, sr.WaitTimeoutError) as e:
+# 			print(e)
+# 			continue  # Re-calling the same function to listen properly
+# 		break
+# 	return herd
 
 
 def note_it(local_step_name):  # Listens to command and logs it with local_step_name
-	local_audio_note = hear_it()
+	local_audio_note = hear_it.hear()
 	local_now = datetime.datetime.now()  # 'local_now' has the current time stamp
 	log = 'Voice_U _|_ ' + str(local_step_name) + " _|_ " + str(local_audio_note) + ' _|_ ' + str(local_now.hour) + ' _|_ ' + str(
 		local_now.minute) + ' _|_ ' + str(local_now.second) + ' _|_ ' + str(local_now.microsecond) + '\n'
-	save_log_to_file(log)
-	speak_it('Noted..')
+	append_log.append(log)
+	speak_it.say('Noted..')
 	return local_audio_note
 
 
 def note_it_n_confirm(local_step_name):  # Listens to command and logs it with local_step_name
 	while True:
-		local_audio_note = hear_it()
-		speak_it('did you just say ' + local_audio_note)
-		local_heard = hear_it()
+		local_audio_note = hear_it.hear()
+		speak_it.say('did you just say ' + local_audio_note)
+		local_heard = hear_it.hear()
 		if "yes" in local_heard or "yeah" in local_heard:
 			local_now = datetime.datetime.now()  # 'local_now' has the current time stamp
 			log = 'Voice_U _|_ ' + str(local_step_name) + " _|_ " + str(local_audio_note) + ' _|_ ' + str(local_now.hour) + ' _|_ ' + str(
 				local_now.minute) + ' _|_ ' + str(local_now.second) + ' _|_ ' + str(local_now.microsecond) + '\n'
-			save_log_to_file(log)
-			speak_it('Noted..')
+			append_log.append(log)
+			speak_it.say('Noted..')
 			return local_audio_note
 		elif "no" in local_heard:
-			speak_it("Then Tell it again Clearly")
+			speak_it.say("Then Tell it again Clearly")
 			continue
 		else:
-			speak_it("reply Yes or No..!")
+			speak_it.say("reply Yes or No..!")
 
 
 def inflecting(local_step_number):  # Converting int(1) to Str(First)...
@@ -282,24 +249,24 @@ def find_trained_data(local_audio_note):  # Finds for file name with 'local_audi
 def clear_logs():  # This will clean all the log files for fresh use.
 	print("Cleaning Key_Logs")
 	open(Key_Log_File_Name, 'w').close()  # Cleaning key_logs of previous task
-	delay(0.05)
+	add_delay.delay(0.05)
 	print("Cleaning Mouse_Logs")
 	open(Mouse_Log_File_Name, 'w').close()  # Cleaning mouse_logs of previous task
-	delay(0.05)
+	add_delay.delay(0.05)
 	print("Cleaning Voice_Logs")
 	open(Voice_Log_File_Name, 'w').close()  # Cleaning voice_logs of previous task
-	delay(0.05)
+	add_delay.delay(0.05)
 	print("Cleaning All_Logs")
 	open(All_Log_File_Name, 'w').close()  # Cleaning all_logs of previous task
-	delay(0.05)
+	add_delay.delay(0.05)
 	print("Cleaning Process_Logs")
 	open(Process_Log_File_Name, 'w').close()  # Cleaning process_logs of previous task
-	delay(0.05)
+	add_delay.delay(0.05)
 
 
 def suspend():  # Using busy waiting until wake keyword is herd.
 	herd = ""
-	# speak_it(
+	# say(
 	# 	random.choice([
 	# 		"I'm going to sleep",
 	# 		"Taking a nap",
@@ -307,10 +274,10 @@ def suspend():  # Using busy waiting until wake keyword is herd.
 	# 		"Good Night"]))
 
 	while "assistant" not in herd and Assistant_Name not in herd:  # Busy Waiting
-		herd = just_listen()
+		herd = hear_it.listen()
 
-	# speak_it("Activating...")
-	speak_it(  # 'How can I help You' kinda Statment
+	# say("Activating...")
+	speak_it.say(  # 'How can I help You' kinda Statement
 		random.choice([
 			"Yes " + User_Name,
 			# "How can i help you "+User_Name,
@@ -328,12 +295,12 @@ if "linux" in platform or "win32" in platform or "darwin" in platform:  # For Li
 	except UnboundLocalError:
 		pass
 
-	speak_it(  # 'Hello' kinda Statments
+	speak_it.say(  # 'Hello' kinda Statments
 		random.choice([
 			"Hey " + User_Name + ".",
 			"Hi " + User_Name,
 			"Hello " + User_Name]))
-	speak_it(  # 'How can I help You' kinda Statment
+	speak_it.say(  # 'How can I help You' kinda Statment
 		random.choice([
 			"How can I help You?",
 			"What can I do for You?",
@@ -342,32 +309,32 @@ if "linux" in platform or "win32" in platform or "darwin" in platform:  # For Li
 			"How do I help you."]))
 
 	while True:
-		audio_note = hear_it()
+		audio_note = hear_it.hear()
 
 		# -------------------------------------------------------------LEARNING
 		# ------------------------------------------------------------
 
 		if ("learn" in audio_note) or ("teach" in audio_note and "you" in audio_note):  # Learning_Mode Code
 			clear_logs()
-			speak_it(
+			speak_it.say(
 				random.choice([
 					"Learning_Mode Mode Activated",
 					"""I'm Ready to Learn""",
 					"Getting Ready to Learn",
 					"Lets get started"]))
-			speak_n_save("Main Task", "Whats the Main Task")
+			speak_it.say_n_save("Main Task", "Whats the Main Task")
 			note_it_n_confirm("Main Task")
 
 			now = datetime.datetime.now()
 			call_process(screen_recorder)
 			Log = 'Screen_Recorder _|_ Main Task _|_ Blank Field _|_ ' + str(now.hour) + ' _|_ ' + str(now.minute) + ' _|_ ' + str(now.second) + ' _|_ ' + str(now.microsecond) + '\n'
-			save_log_to_file(Log)
+			append_log.append(Log)
 			heard = ""
 			while "task complete" not in heard:
 				step_number += 1
 				vstep = inflecting(step_number)
 				text_note = "Whats the " + vstep
-				speak_n_save(vstep, text_note)
+				speak_it.say_n_save(vstep, text_note)
 				audio_note = note_it(vstep)
 
 				if "dynamic" in audio_note and "typing" in audio_note:
@@ -375,10 +342,10 @@ if "linux" in platform or "win32" in platform or "darwin" in platform:  # For Li
 					Log = 'Dynamic_Typing _|_ ' + str(vstep) + ' _|_ Some bla bla text _|_ ' + str(
 						now.hour) + ' _|_ ' + str(now.minute) + ' _|_ ' + str(now.second) + ' _|_ ' + str(
 						now.microsecond) + '\n'
-					save_log_to_file(Log)
+					append_log.append(Log)
 					call_process(dynamic_typing)
-					speak_it("is there a next step?")
-					heard = hear_it()
+					speak_it.say("is there a next step?")
+					heard = hear_it.hear()
 					if "no" in heard:
 						break
 					else:
@@ -387,22 +354,22 @@ if "linux" in platform or "win32" in platform or "darwin" in platform:  # For Li
 				else:
 					os.system(Call_Keyboard_Tracker)
 					os.system(Call_Mouse_Tracker)
-					speak_it("Mouse and Keyboard are being Tracked.")
+					speak_it.say("Mouse and Keyboard are being Tracked.")
 					heard = ""
-					speak_it("Please show me how to do it.")
+					speak_it.say("Please show me how to do it.")
 					while "complete" not in heard:
-						heard = just_listen()
-					the_killer(["K_Tracker", "M_Tracker"])  # Stopping the trackers.
+						heard = hear_it.listen()
+					process_killer.the_killer(["K_Tracker", "M_Tracker"])  # Stopping the trackers.
 
-			speak_it('Exiting Learning_Mode Mode')
-			the_killer(["K_Tracker", "M_Tracker", "ffmpeg"])  # Stopping the trackers.
-			speak_it('Please wait a second while I Understand what you taught.')
+			speak_it.say('Exiting Learning_Mode Mode')
+			process_killer.the_killer(["K_Tracker", "M_Tracker", "ffmpeg"])  # Stopping the trackers.
+			speak_it.say('Please wait a second while I Understand what you taught.')
 			step_number = 0  # Resetting step_number to '0'
-			delay("medium")
-			call_process(combine)  # Call Merger
-			delay("long")
+			add_delay.delay("medium")
+			call_process(combine_logs)  # Call Merger
+			add_delay.delay("long")
 			call_process(understand)  # Call Understanding
-			speak_it("Done..!")
+			speak_it.say("Done..!")
 			suspend()
 
 		# ---------------------------------------------------------DYNAMIC
@@ -416,7 +383,7 @@ if "linux" in platform or "win32" in platform or "darwin" in platform:  # For Li
 		# DO-----------------------------------------------------
 
 		elif "what can you do" in audio_note:
-			speak_it(
+			speak_it.say(
 				random.choice([
 					"I can do a lot of things",
 					"I can learn what you teach",
@@ -428,15 +395,15 @@ if "linux" in platform or "win32" in platform or "darwin" in platform:  # For Li
 		# ------------------------------------------------------------Search in DATABASE----------------------------------------------
 
 		elif find_trained_data(audio_note):  # If training data is found
-			speak_it("At your Service")
+			speak_it.say("At your Service")
 			call_process(control_keyboard_mouse)  # Calling MK_control if file is found
-			speak_it("Task Completed")
+			speak_it.say("Task Completed")
 			suspend()
 
 		# # -----------------------------------------------------------SING A SONG-------------------------------------------------------
 		#
 		# elif "sing" in audio_note and "song" in audio_note:
-		# 	speak_it(
+		# 	say(
 		# 		random.choice([
 		# 			"""Humpty Dumpty sat on a wall, Humpty dumpty fell from the wall, Humpty Dumpty Broke his ball, Humpty Dumpty died in the fall.""",
 		# 			"""Twinkle, twinkle, little star, How I wonder what you are! Up above the world so high, Like a diamond in the sky. When the blazing sun is gone, When he nothing shines upon, Then you show your little light, Twinkle, twinkle, all the night. """,
@@ -449,7 +416,7 @@ if "linux" in platform or "win32" in platform or "darwin" in platform:  # For Li
 		# -----------------------------------------------------------NON-SENSE---------------------------------------------------------
 
 		elif ("**" in audio_note) or ("idiot" in audio_note) or ("bitch" in audio_note):
-			speak_it(random.choice([
+			speak_it.say(random.choice([
 				# "Fuck, you.",
 				"Go fuck yourself",
 				"Go fuck yourself with a cactus",
@@ -463,7 +430,7 @@ if "linux" in platform or "win32" in platform or "darwin" in platform:  # For Li
 		# ------------------------------------------------------------Search in DATABASE----------------------------------------------
 
 		elif not find_trained_data(audio_note):  # If training data not found
-			speak_it(
+			speak_it.say(
 				random.choice([
 					"""I don't know how to do it. Can you teach me""",
 					"You never taught me how to do it",
@@ -474,7 +441,7 @@ if "linux" in platform or "win32" in platform or "darwin" in platform:  # For Li
 		# "First teach me how to do it. Idiot",
 
 		else:
-			speak_it("bla bla bla")  # this can never be spoken due to the above 2 elif conditions
+			speak_it.say("bla bla bla")  # this can never be spoken due to the above 2 elif conditions
 
 # ------------------------------------------END OF Linux, Mac, Windows-----------------------------------------------------
 
@@ -485,4 +452,4 @@ else:
 	print("   *                     - darwin (Mac)\n")
 	print(" > Your Platform         -", platform)
 
-speak_it("Exiting PC Assistant")
+speak_it.say("Exiting PC Assistant")

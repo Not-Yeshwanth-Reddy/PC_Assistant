@@ -18,19 +18,17 @@ def get_frames(log_list, log_number, start_time, mouse_location):							# Find c
 		while True:																	# This keeps running until it gets something is the Subtracted Image
 			captured_video.set(cv2.CAP_PROP_POS_MSEC, (present_time - frame_time))			# taking a frame at given Time - frame_time from video
 			success, image2 = captured_video.read()											# Searching for frame in Video
-			if success:  # If the frame is found in Video
-				cv2.imwrite(Frame_Name + f'{int(present_time)}, ({frame_time}).png',
-							image2)  # save frame as PNG file-----------
-				image3 = image2 - image1  # subtracting the image pixel color values
+			if success:  																	# If the frame is found in Video
+				cv2.imwrite(Frame_Name + f'{int(present_time)}, ({frame_time}).png', image2)	# save frame as PNG file-----------
+				image3 = image2 - image1  													# subtracting the image pixel color values
 				image3 = cv2.cvtColor(image3, cv2.COLOR_BGR2GRAY)
-				if cv2.countNonZero(image3) == 0:  # Checking if the Image is completely black or not
-					frame_time += (1000 / fps)  # If Complete Black, Taking 1 frame previous to it.
-				else:  # If not completely Black, then save and return Image name
-					cv2.imwrite(Frame_Name + "%d(sub).png" % present_time,
-								image3)  # save Subtracted frame as PNG file--------------
-					# cv2.imwrite('Icon_Image.png', image3)					# save Subtracted frame as PNG file
-					return Frame_Name + "%d(sub).png" % present_time  # Returning the image's name
-			else:  # If the frame not found in video, just continue the while loop--------------------------------------------------------------------------------
-				continue  # continue
-	else:  # if frame not found in video, just pass
-		return None  # Returns None type when not found
+				if cv2.countNonZero(image3) == 0:  											# Checking if the Image is completely black or not
+					frame_time += (1000 / fps)  											# If Complete Black, Taking 1 frame previous to it.
+				else:  																		# If not completely Black, then save and return Image name
+					cv2.imwrite(Frame_Name + "%d(sub).png" % present_time,image3) 			# save Subtracted frame as PNG file--------------
+					# cv2.imwrite('Icon_Image.png', image3)									# save Subtracted frame as PNG file
+					return Frame_Name + "%d(sub).png" % present_time  						# Returning the image's name
+			else:  			# If the frame not found in video, just continue the while loop--------------------------------------------------------------------------------
+				continue  	# continue
+	else:  																					# if frame not found in video, just pass
+		return None  																		# Returns None type when not found
