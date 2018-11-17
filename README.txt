@@ -1,6 +1,5 @@
   # PC_AssistANT
   
-  Developer - Yeshwanth Reddy
   
     How to run the PC Assistant -
       goto the location - "dist/PC_AssistANT/"
