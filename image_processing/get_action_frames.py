@@ -1,14 +1,15 @@
 import cv2
+from Data import strings
 
-Frame_Name = "Frames/Frame"
-Recorded_Video = "Logs/screen_record.mp4"
+Frame_Name = strings.Frame_Name
+Recorded_Video_Location = strings.Recorded_Video_Location
 
 
 def get_frames(log_list, log_number, start_time, mouse_location):							# Find change in screen and subtract it to get only changed component
 	present_time = int((sum(x * int(t) for x, t in zip([3600, 60, 1, 1 / 1000000], log_list[log_number][:-1].split(" _|_ ")[3:])) * 1000) - start_time)
 	print("Clicked at : ", mouse_location)
 	print("Present Time : ", present_time + start_time, ":", present_time)
-	captured_video = cv2.VideoCapture(Recorded_Video)										# Reading Video
+	captured_video = cv2.VideoCapture(Recorded_Video_Location)										# Reading Video
 	fps = captured_video.get(cv2.CAP_PROP_FPS)												# Getting the fps of video
 	captured_video.set(cv2.CAP_PROP_POS_MSEC, present_time)									# taking a frame at given Time from video
 	success, image1 = captured_video.read()													# Searching for frame in Video

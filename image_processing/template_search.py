@@ -6,22 +6,25 @@ import numpy
 import cv2
 import pyautogui
 from matplotlib import pyplot as plt
+from Data import strings
 
 # Sample data -
 # > Log_list = ["Mouse _|_ Moved _|_ (1214, 587) _|_ 11 _|_ 50 _|_ 47 _|_ 779491", "Mouse _|_ Pressed.Button.right _|_ (1312, 708) _|_ 11 _|_ 50 _|_ 45 _|_ 662823 _|_ None _|_ None _|_ Icon_Not_Found", "Mouse _|_ Pressed.Button.left _|_ (1214, 591) _|_ 11 _|_ 50 _|_ 48 _|_ 328612 _|_ Icons/Icon26969.png _|_ Icons/Icon16620_shape.png _|_ Perfect"]
 # > Log_Number = 2
 # This code gives boundaries of the template from screen shot.
 
+Temp_png_file = strings.Temp_png_file
 
-def search(log_list, log_number, accuracy):
+
+def search(log_list, log_number):
 	left = []
 	right = []
 	top = []
 	bottom = []
 	template_name = (log_list[log_number]).split(" _|_ ")[7]
 	template = cv2.imread(template_name, 0)
-	pyautogui.screenshot("Logs/Temp_Icon_Finder.png")
-	img = cv2.imread("Logs/Temp_Icon_Finder.png", 0)
+	pyautogui.screenshot(Temp_png_file)
+	img = cv2.imread(Temp_png_file, 0)
 	img2 = img.copy()
 	w, h = template.shape[::-1]
 

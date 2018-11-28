@@ -1,8 +1,9 @@
 import cv2
+from Data import strings
 
-Recorded_Video = 'Logs/screen_record.mp4'
-Final_Icon_Name = "Icons/Icon"# %d.png
-Frame_Name = "Frames/Frame"
+Recorded_Video_Location = strings.Recorded_Video_Location
+Final_Icon_Name = strings.Final_Icon_Name# %d.png
+Frame_Name = strings.Frame_Name
 
 
 def crop(bounding_box_coordinates, time, image_name):
@@ -21,7 +22,7 @@ def crop(bounding_box_coordinates, time, image_name):
 		top = min_y
 	elif bottom > max_y:
 		bottom = max_y
-	captured_video = cv2.VideoCapture(Recorded_Video)								# Reading Video
+	captured_video = cv2.VideoCapture(Recorded_Video_Location)								# Reading Video
 	captured_video.set(cv2.CAP_PROP_POS_MSEC, time)									# taking a frame at given time from video
 	success, image = captured_video.read()											# Searching for frame in Video
 	if success:																# If the frame is found in Video

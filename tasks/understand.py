@@ -4,12 +4,14 @@ NnY_Packages
 """
 
 import datetime
+from Data import strings
 from image_processing import get_action_frames, to_Black_n_White, group_pixels, crop_section, draw_shape, get_group_size
 from database_manager import insert_icon_name, remove_unwanted_mouse_logs, search_for_safe_time
 
-Recorded_Video = 'Logs/screen_record.mp4'
-Final_Icon_Name = "Icons/Icon"# %d.png
-Frame_Name = "Frames/Frame"
+Recorded_Video_Location = strings.Recorded_Video_Location
+Final_Icon_Name = strings.Final_Icon_Name # %d.png
+Frame_Name = strings.Frame_Name
+All_Log_File_Name = strings.All_Log_File_Name
 Grouping_Threshold = 15
 
 
@@ -22,12 +24,13 @@ def get_present_date_time():												# Returns a string of month_date_hr_min_
 
 def get_file_name(log_list):											# Returns a string containing the MainTask voice log of user
 	line = [line for line in log_list if ("Main Task" in line and "Voice_U" in line)][0].split(" _|_ ")
-	file_name = 'Train_Data/'+str(line[2]) + '.txt'
+	file_name = strings.Train_Data_Location
+	file_name = file_name + str(line[2]) + '.txt'
 	return file_name
 
 
 def main_function():														# The Driver Code
-	text_file1 = open('Logs/All_Logs.txt', 'r')					# Reading The All_Logs file
+	text_file1 = open(All_Log_File_Name, 'r')					# Reading The All_Logs file
 	log_list = text_file1.readlines()							# Making a List of Strings from All_Logs.txt
 	text_file2_name = get_file_name(log_list)					# Getting a name for the file to save the logs in All_Logs.txt
 	text_file2 = open(text_file2_name, 'w')						# Creating the file with the name of MainTask

@@ -318,7 +318,7 @@ if "linux" in platform or "win32" in platform or "darwin" in platform:  # For Li
 			clear_logs()
 			speak_it.say(
 				random.choice([
-					"Learning_Mode Mode Activated",
+					"Learning Mode Activated",
 					"""I'm Ready to Learn""",
 					"Getting Ready to Learn",
 					"Lets get started"]))
@@ -359,11 +359,11 @@ if "linux" in platform or "win32" in platform or "darwin" in platform:  # For Li
 					speak_it.say("Please show me how to do it.")
 					while "complete" not in heard:
 						heard = hear_it.listen()
-					process_killer.the_killer(["K_Tracker", "M_Tracker"])  # Stopping the trackers.
+					process_killer.the_killer(["track_keyboard", "track_mouse"])  # Stopping the trackers.
 
-			speak_it.say('Exiting Learning_Mode Mode')
-			process_killer.the_killer(["K_Tracker", "M_Tracker", "ffmpeg"])  # Stopping the trackers.
-			speak_it.say('Please wait a second while I Understand what you taught.')
+			speak_it.say("Exiting Learning Mode")
+			process_killer.the_killer(["track_keyboard", "track_mouse", "ffmpeg"])  # Stopping the trackers.
+			speak_it.say("Please wait a second while I Understand what you taught.")
 			step_number = 0  # Resetting step_number to '0'
 			add_delay.delay("medium")
 			call_process(combine_logs)  # Call Merger
@@ -412,20 +412,6 @@ if "linux" in platform or "win32" in platform or "darwin" in platform:  # For Li
 		# 			"""One two, pickup my shoe. three four, shut the door. five six, pick up the sticks. seven eight, lay them straight. nine ten, Big Fat Hen.""",
 		# 			"""Suffer suffer scream in pain. Blood is spilling from your brain. Zombies gnaaw you like a plum. Piercing cries and you succumb."""]))
 		# 	suspend()
-
-		# -----------------------------------------------------------NON-SENSE---------------------------------------------------------
-
-		elif ("**" in audio_note) or ("idiot" in audio_note) or ("bitch" in audio_note):
-			speak_it.say(random.choice([
-				# "Fuck, you.",
-				"Go fuck yourself",
-				"Go fuck yourself with a cactus",
-				# "You are an Ass hole",
-				"You are an idiot",
-				"Stop scolding me",
-				# "Thats not a good word to use",
-				"""Don't speak un-parliamentary language"""]))
-			suspend()
 
 		# ------------------------------------------------------------Search in DATABASE----------------------------------------------
 

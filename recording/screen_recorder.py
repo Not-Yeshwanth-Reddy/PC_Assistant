@@ -5,8 +5,10 @@ NnY_Packages
 import sys
 import os
 import pyautogui
+from Data import strings
 
-ScreenRecord_File_Name = 'Logs/screen_record.mp4'
+
+ScreenRecord_File_Name = strings.ScreenRecord_File_Name
 
 
 def main_function():

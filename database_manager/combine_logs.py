@@ -3,15 +3,22 @@ Written By	- Yeshwanth Reddy
 NnY_Packages
 """
 from operator import itemgetter
+from Data import strings
+
+Key_Log_File_Name = strings.Key_Log_File_Name
+Voice_Log_File_Name = strings.Voice_Log_File_Name
+All_Log_File_Name = strings.All_Log_File_Name
+Temp_Log_File_Name = strings.Temp_Log_File_Name
+Mouse_Log_File_Name = strings.Mouse_Log_File_Name
 
 
 def main_function():
 	# open the file
-	text_file1 = open('Logs/Key_Logs.txt', 'r')
-	text_file2 = open('Logs/Voice_Logs.txt', 'r')
-	text_file3 = open('Logs/Mouse_Logs.txt', 'r')
-	temp_file = open('Logs/temp.txt', 'w')
-	output = open("Logs/All_Logs.txt", 'w')
+	text_file1 = open(Key_Log_File_Name, 'r')
+	text_file2 = open(Voice_Log_File_Name, 'r')
+	text_file3 = open(Mouse_Log_File_Name, 'r')
+	temp_file = open(Temp_Log_File_Name, 'w')
+	output = open(All_Log_File_Name, 'w')
 
 	# initialize an empty list
 	temp_list = []

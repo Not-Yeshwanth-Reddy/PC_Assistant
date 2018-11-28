@@ -6,9 +6,10 @@ import time
 
 from dynamic_typing import dynamic_typing
 from image_processing import template_search
+from Data import strings
 import pyautogui
 
-Temp_Log_File_Name = 'Logs/temp.txt'
+Temp_Log_File_Name = strings.Temp_Log_File_Name
 Duration = 0.3
 
 

@@ -4,7 +4,7 @@ block_cipher = None
 
 
 a = Analysis(['track_mouse.py'],
-             pathex=['D:\\Projects\\PC_Assistant\\PC_Assistant\\track_mouse'],
+             pathex=['D:\\Projects\\PC_Assistant\\PC_Assistant\\recording\\win\\track_mouse'],
              binaries=[],
              datas=[],
              hiddenimports=[],

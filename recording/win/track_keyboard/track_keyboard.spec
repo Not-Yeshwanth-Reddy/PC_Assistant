@@ -4,7 +4,7 @@ block_cipher = None
 
 
 a = Analysis(['track_keyboard.py'],
-             pathex=['D:\\Projects\\PC_Assistant\\PC_Assistant\\track_keyboard'],
+             pathex=['D:\\Projects\\PC_Assistant\\PC_Assistant\\recording\\win\\track_keyboard'],
              binaries=[],
              datas=[],
              hiddenimports=[],
