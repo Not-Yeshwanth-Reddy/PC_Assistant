@@ -1,0 +1,8 @@
+inflect
+pyautogui
+SpeechRecognition
+numpy
+opencv-python
+matplotlib
+pyaudio
+ffmpeg-python

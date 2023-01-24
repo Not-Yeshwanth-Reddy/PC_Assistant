@@ -1,5 +1,5 @@
-Voice_C _|_ Main Task _|_ Whats the Main Task _|_ 0 _|_ 16 _|_ 3 _|_ 344447
-Voice_U _|_ Main Task _|_ show desktop _|_ 0 _|_ 16 _|_ 28 _|_ 906239
-Screen_Recorder _|_ Main Task _|_ Blank Field _|_ 0 _|_ 16 _|_ 30 _|_ 630358
-Voice_C _|_ 1st step _|_ Whats the 1st step _|_ 0 _|_ 16 _|_ 30 _|_ 724034
-Voice_U _|_ 1st step _|_ press windows + d keys _|_ 0 _|_ 16 _|_ 44 _|_ 72512
+Voice_C _|_ Main Task _|_ Whats the Main Task _|_ 18 _|_ 49 _|_ 37 _|_ 893353
+Voice_U _|_ Main Task _|_ open cmd _|_ 18 _|_ 49 _|_ 59 _|_ 20074
+Screen_Recorder _|_ Main Task _|_ Blank Field _|_ 18 _|_ 50 _|_ 0 _|_ 976819
+Voice_C _|_ 1st step _|_ Whats the 1st step _|_ 18 _|_ 50 _|_ 6 _|_ 992081
+Voice_U _|_ 1st step _|_ click on the terminal _|_ 18 _|_ 50 _|_ 17 _|_ 856496

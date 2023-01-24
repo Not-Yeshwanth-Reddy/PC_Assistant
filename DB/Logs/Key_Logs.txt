@@ -1,6 +1,0 @@
-Keyboard _|_ Released _|_ 'd' _|_ 0 _|_ 16 _|_ 57 _|_ 675695
-Keyboard _|_ Released _|_ Key.cmd _|_ 0 _|_ 16 _|_ 57 _|_ 691321
-Keyboard _|_ Pressed _|_ Key.cmd _|_ 0 _|_ 17 _|_ 0 _|_ 394656
-Keyboard _|_ Pressed _|_ '2' _|_ 0 _|_ 17 _|_ 0 _|_ 472785
-Keyboard _|_ Released _|_ '2' _|_ 0 _|_ 17 _|_ 0 _|_ 597798
-Keyboard _|_ Released _|_ Key.cmd _|_ 0 _|_ 17 _|_ 0 _|_ 629047

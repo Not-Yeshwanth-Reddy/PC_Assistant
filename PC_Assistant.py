@@ -6,6 +6,7 @@ import datetime
 import os
 import random
 import inflect
+from fuzzywuzzy import fuzz
 
 from dynamic_typing import dynamic_typing
 from recording import screen_recorder
@@ -14,6 +15,7 @@ from tasks import understand, process_killer, add_delay
 from database_manager import combine_logs, append_log
 from Data import strings
 from Voice import speak_it, hear_it
+from tasks.open_application import *
 
 # ToDO - Change Find_Train_Data Location in Windows
 User_Details_File_Name = strings.User_Details_File_Name
@@ -154,7 +156,7 @@ def change_user_details(user_name, assistant_name, local_heard):
 
 
 def special_functions(herd):  # bla bla
-	if "shutdown" in herd or "exit" in herd:
+	if "shut down" in herd or "exit" in herd:
 		process_killer.the_killer(["K_Tracker", "M_Tracker", "ffmpeg"])
 		speak_it.say("Exiting PC Assistant")
 		exit()
@@ -235,15 +237,31 @@ def call_process(process_name):  # function used to call a Learning_Mode
 
 def find_trained_data(local_audio_note):  # Finds for file name with 'local_audio_note' in it's Name.
 	temp_list = os.listdir(Train_Data_Location)
+	app_to_open, max_ratio = '', 0
 	for line in temp_list:
-		if local_audio_note in line and ".txt" in line:
-			local_audio_note = Train_Data_Location + line
-			temp_file = open(Temp_Log_File_Name, 'w')
-			temp_file.writelines(local_audio_note)
-			temp_file.close()
-			print("data found...")
-			return True
+		if fuzz.token_sort_ratio(line, local_audio_note) > max_ratio and ".txt" in line:
+			app_to_open = line
+			max_ratio = fuzz.token_sort_ratio(line, local_audio_note)
+
+	if max_ratio > 50:
+		local_audio_note = Train_Data_Location + app_to_open
+		temp_file = open(Temp_Log_File_Name, 'w')
+		temp_file.writelines(local_audio_note)
+		temp_file.close()
+		print("data found...")
+		return True
 	return False
+# def find_trained_data(local_audio_note):  # Finds for file name with 'local_audio_note' in it's Name.
+# 	temp_list = os.listdir(Train_Data_Location)
+# 	for line in temp_list:
+# 		if local_audio_note in line and ".txt" in line:
+# 			local_audio_note = Train_Data_Location + line
+# 			temp_file = open(Temp_Log_File_Name, 'w')
+# 			temp_file.writelines(local_audio_note)
+# 			temp_file.close()
+# 			print("data found...")
+# 			return True
+# 	return False
 
 
 def clear_logs():  # This will clean all the log files for fresh use.
@@ -392,6 +410,16 @@ if "linux" in platform or "win32" in platform or "darwin" in platform:  # For Li
 					# "What do you want me to do?",
 					"I can do what ever you teach me"]))
 
+		# ------------------------------------------------------------Open Application------------------------------------------------
+		
+		elif "open" in audio_note:
+			open_status = open_app(audio_note)
+			if open_status:
+				speak_it.say("Opening application")
+			else:
+				speak_it.say("App Not Found")
+
+
 		# ------------------------------------------------------------Search in DATABASE----------------------------------------------
 
 		elif find_trained_data(audio_note):  # If training data is found
@@ -402,16 +430,17 @@ if "linux" in platform or "win32" in platform or "darwin" in platform:  # For Li
 
 		# # -----------------------------------------------------------SING A SONG-------------------------------------------------------
 		#
-		# elif "sing" in audio_note and "song" in audio_note:
-		# 	say(
-		# 		random.choice([
-		# 			"""Humpty Dumpty sat on a wall, Humpty dumpty fell from the wall, Humpty Dumpty Broke his ball, Humpty Dumpty died in the fall.""",
-		# 			"""Twinkle, twinkle, little star, How I wonder what you are! Up above the world so high, Like a diamond in the sky. When the blazing sun is gone, When he nothing shines upon, Then you show your little light, Twinkle, twinkle, all the night. """,
-		# 			"""Jack and Jill went up the hill. To fetch a pail of water; Jack fell down and broke his crown, and Jill came tumbling after. Up Jack got, and home did trot, As fast as he could caper, To old Dame Dob, who patched his nob, With vinegar and brown paper.""",
-		# 			"""Baa, baa, black sheep. Have you any wool?. Yes sir, yes sir, three bags full. One for the master, And one for the dame, And one for the little boy, Who lives down the lane.""",
-		# 			"""One two, pickup my shoe. three four, shut the door. five six, pick up the sticks. seven eight, lay them straight. nine ten, Big Fat Hen.""",
-		# 			"""Suffer suffer scream in pain. Blood is spilling from your brain. Zombies gnaaw you like a plum. Piercing cries and you succumb."""]))
-		# 	suspend()
+		elif "sing" in audio_note and "song" in audio_note:
+			speak_it.say(
+				random.choice([
+					"""Humpty Dumpty sat on a wall, Humpty dumpty fell from the wall, Humpty Dumpty Broke his ball, Humpty Dumpty died in the fall.""",
+					"""Twinkle, twinkle, little star, How I wonder what you are! Up above the world so high, Like a diamond in the sky. When the blazing sun is gone, When he nothing shines upon, Then you show your little light, Twinkle, twinkle, all the night. """,
+					"""Jack and Jill went up the hill. To fetch a pail of water; Jack fell down and broke his crown, and Jill came tumbling after. Up Jack got, and home did trot, As fast as he could caper, To old Dame Dob, who patched his nob, With vinegar and brown paper.""",
+					"""Baa, baa, black sheep. Have you any wool?. Yes sir, yes sir, three bags full. One for the master, And one for the dame, And one for the little boy, Who lives down the lane.""",
+					"""One two, pickup my shoe. three four, shut the door. five six, pick up the sticks. seven eight, lay them straight. nine ten, Big Fat Hen.""",
+					# """Suffer suffer scream in pain. Blood is spilling from your brain. Zombies gnaaw you like a plum. Piercing cries and you succumb."""
+					]))
+			suspend()
 
 		# ------------------------------------------------------------Search in DATABASE----------------------------------------------
 
