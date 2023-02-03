@@ -1,8 +1,10 @@
+fuzzywuzzy
 inflect
 pyautogui
 SpeechRecognition
 numpy
 opencv-python
 matplotlib
-pyaudio
+#pyaudio
 ffmpeg-python
+python-Levenshtein
