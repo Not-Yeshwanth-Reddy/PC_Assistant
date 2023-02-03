@@ -1,0 +1,4 @@
+sudo apt-get install portaudio19-dev 
+sudo apt-get install build-essential linux-headers-$(uname -r) module-assistant alsa-source
+
+pip install pyaudio
