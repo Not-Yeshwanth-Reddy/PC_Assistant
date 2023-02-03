@@ -24,6 +24,7 @@ def the_killer(process_list):  								# Kills all the other Learning_Mode excep
 							os.system(kill)
 							print(kill)
 						i += 1
+
 	elif "darwin" in platform or "linux" in platform:
 		os.system('ps -A > ' + str(process_log_file_name))
 		with open(process_log_file_name) as f:

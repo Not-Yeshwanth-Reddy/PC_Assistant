@@ -410,25 +410,7 @@ if "linux" in platform or "win32" in platform or "darwin" in platform:  # For Li
 					# "What do you want me to do?",
 					"I can do what ever you teach me"]))
 
-		# ------------------------------------------------------------Open Application------------------------------------------------
-		
-		elif "open" in audio_note:
-			open_status = open_app(audio_note)
-			if open_status:
-				speak_it.say("Opening application")
-			else:
-				speak_it.say("App Not Found")
-
-
-		# ------------------------------------------------------------Search in DATABASE----------------------------------------------
-
-		elif find_trained_data(audio_note):  # If training data is found
-			speak_it.say("At your Service")
-			call_process(control_keyboard_mouse)  # Calling MK_control if file is found
-			speak_it.say("Task Completed")
-			suspend()
-
-		# # -----------------------------------------------------------SING A SONG-------------------------------------------------------
+				# # -----------------------------------------------------------SING A SONG-------------------------------------------------------
 		#
 		elif "sing" in audio_note and "song" in audio_note:
 			speak_it.say(
@@ -440,6 +422,25 @@ if "linux" in platform or "win32" in platform or "darwin" in platform:  # For Li
 					"""One two, pickup my shoe. three four, shut the door. five six, pick up the sticks. seven eight, lay them straight. nine ten, Big Fat Hen.""",
 					# """Suffer suffer scream in pain. Blood is spilling from your brain. Zombies gnaaw you like a plum. Piercing cries and you succumb."""
 					]))
+			suspend()
+
+		# ------------------------------------------------------------Open Application------------------------------------------------
+		
+		elif "open" in audio_note:
+			open_status = open_app(audio_note)
+			if open_status:
+				speak_it.say("Opening application")
+			else:
+				speak_it.say("App Not Found")
+			suspend()
+
+
+		# ------------------------------------------------------------Search in DATABASE----------------------------------------------
+
+		elif find_trained_data(audio_note):  # If training data is found
+			speak_it.say("At your Service")
+			call_process(control_keyboard_mouse)  # Calling MK_control if file is found
+			speak_it.say("Task Completed")
 			suspend()
 
 		# ------------------------------------------------------------Search in DATABASE----------------------------------------------
