@@ -104,3 +104,10 @@ This will set your assistant in Sleep mode. It will be active in the Background 
 ### 5. Closing the PC assistant -
 Say - (exit) or (go to sleep)
 This mightbe your favourite command after your first use. ;}
+
+
+# Glimps:
+Learning Mode:
+https://drive.google.com/file/d/14ME8knRvHl1KvGeXlWv4orjOIdcc8FJ8/view
+Message on Whatsapp:
+https://drive.google.com/file/d/1Ig9aRwxpO0mE9ffZ5v8Md_lSt-uJJwou/view
