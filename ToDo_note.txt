@@ -1,0 +1,29 @@
+Linux:
+	Problems with text to speech
+	Warnings in speech to text
+	Issues with ffmpeg module 
+		(This is the module which handles screen recording and frames extraction from mp4 file.)
+
+Windows:
+	No Code for Training
+	Opens Application just like Siri/Google
+
+	Training:
+	Screen Recording (platform dependent tools
+						linux - ffmpeg
+						windows - ?
+						mac - ?)
+	Mouse and Keyboard Logs (python)
+	Speech to Text (google speech API)
+	Text to Speech (platform dependent tools 
+						windows-cortana, 
+						linux-festival, 
+						mac-siri)
+
+	Speech Recognition is slow
+	- Need to work on Speech to text using streaming audio.
+Code is all over the place
+	- Not Modular
+	- Hard to add more features
+	- Complicated work flow
+	- Restructure is necessary
